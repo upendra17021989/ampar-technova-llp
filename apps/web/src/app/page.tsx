@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ProductCard } from "@/components/product-card";
 import { industries, productCategories, products, technologies } from "@/content/catalogue";
 
@@ -16,8 +17,11 @@ export default function HomePage() {
               <Link className="button button-inverse" href="/products">Explore Products</Link>
             </div>
           </div>
-          <div className="hero-panel" aria-label="Core capabilities">
-            <span>FRP Engineering</span><span>Thermoplastic Fabrication</span><span>Dual Laminate</span><span>Process Equipment</span>
+          <div className="hero-brand-panel">
+            <Image src="/brand/ampar-technova-logo-banner.jpeg" alt="AMPAR Technova LLP — Engineering Tomorrow’s Corrosion-Resistant Solutions" width={1494} height={578} priority sizes="(max-width: 832px) 90vw, 38vw" />
+            <div className="hero-capabilities" aria-label="Core capabilities">
+              <span>FRP Engineering</span><span>Thermoplastic Fabrication</span><span>Dual Laminate</span><span>Process Equipment</span>
+            </div>
           </div>
         </div>
       </section>

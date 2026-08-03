@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
         <div>
-          <div className="footer-brand">AMPAR TECHNOVA LLP</div>
+          <div className="footer-brand"><Image src="/brand/ampar-technova-mark.jpeg" alt="" width={48} height={48} /><span>AMPAR TECHNOVA LLP</span></div>
           <p>Corrosion-resistant FRP, thermoplastic, dual-laminate and process equipment solutions.</p>
         </div>
         <div>

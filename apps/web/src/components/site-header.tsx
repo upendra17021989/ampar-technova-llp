@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const navigation = [
@@ -25,7 +26,7 @@ export function SiteHeader() {
       </div>
       <div className="shell header-inner">
         <Link className="brand" href="/" aria-label="AMPAR Technova home">
-          <span className="brand-mark" aria-hidden="true">AT</span>
+          <Image className="brand-logo" src="/brand/ampar-technova-mark.jpeg" alt="" width={48} height={48} priority />
           <span>AMPAR TECHNOVA</span>
         </Link>
         <button
