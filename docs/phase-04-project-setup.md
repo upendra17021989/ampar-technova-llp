@@ -29,7 +29,7 @@ Establish a reproducible monorepo with runnable frontend and backend application
 - The local workstation currently provides Java 17. CI also uses Java 17 for reproducibility.
 - Java 21 remains the preferred production target from the architecture plan; upgrading requires changing the Maven property and CI runtime after a Java 21 JDK is available.
 - PostgreSQL is provided by Supabase and accessed from Spring Boot through JDBC. Docker and a local database are not part of the project.
-- The configured development endpoint is `db.zborevxprhonbyrfjvxk.supabase.co:5432/postgres` with username `postgres`, TLS required, and the password supplied only at runtime.
+- The configured development endpoint is the Supabase Session pooler at `aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres` with username `postgres.zborevxprhonbyrfjvxk`, TLS required, and the password supplied only at runtime.
 
 ## 4. Repository structure
 
@@ -48,7 +48,7 @@ package.json             Workspace scripts
 1. Copy `.env.example` to `.env`.
 2. Replace the example PostgreSQL password for local use.
 3. Create the Supabase project and follow `docs/supabase-setup.md`.
-4. Set `DATABASE_URL`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` in the local environment.
+4. Set `DATABASE_JDBC_URL`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` in the local environment.
 5. Install frontend dependencies with `npm.cmd install` on Windows PowerShell.
 6. Start the web application with `npm.cmd run dev:web`.
 7. Start the API from `apps/api` with `mvn spring-boot:run`; Flyway applies versioned migrations automatically.
