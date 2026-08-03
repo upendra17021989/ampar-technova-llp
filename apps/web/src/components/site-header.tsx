@@ -41,7 +41,11 @@ export function SiteHeader() {
         </button>
         <nav id="primary-navigation" className={open ? "primary-nav is-open" : "primary-nav"} aria-label="Primary navigation">
           {navigation.map(([label, href]) => (
-            <Link key={label} href={href} onClick={() => setOpen(false)}>{label}</Link>
+            href.includes("#") ? (
+              <a key={label} href={href} onClick={() => setOpen(false)}>{label}</a>
+            ) : (
+              <Link key={label} href={href} onClick={() => setOpen(false)}>{label}</Link>
+            )
           ))}
           <Link className="button button-primary nav-cta" href="/request-a-quote" onClick={() => setOpen(false)}>
             Request a Quote
