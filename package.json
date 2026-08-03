@@ -1,0 +1,18 @@
+{
+  "name": "ampar-technova-platform",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace=@ampar/web",
+    "build:web": "npm run build --workspace=@ampar/web",
+    "lint:web": "npm run lint --workspace=@ampar/web",
+    "test:web": "npm run test --workspace=@ampar/web",
+    "check": "npm run lint:web && npm run test:web && npm run build:web"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

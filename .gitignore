@@ -1,0 +1,26 @@
+# Node
+node_modules/
+.next/
+coverage/
+npm-debug.log*
+
+# Java
+target/
+*.class
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Temporary and generated
+*.log
+tmp/
+dist/
