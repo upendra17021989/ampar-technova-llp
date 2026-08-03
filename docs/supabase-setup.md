@@ -14,21 +14,28 @@ For local development and a persistent Spring Boot backend:
 - Otherwise use the Supavisor Session pooler on port 5432, which supports IPv4 and persistent backend sessions.
 - Do not use transaction mode on port 6543 for the initial Spring Boot/Flyway configuration; transaction pooling has different prepared-statement and migration considerations.
 
-Copy the exact connection values from Supabase Dashboard → Connect. Convert the URL to JDBC form:
+The configured development project uses this direct connection:
 
 ```text
-jdbc:postgresql://HOST:5432/postgres?sslmode=require
+Host: db.zborevxprhonbyrfjvxk.supabase.co
+Port: 5432
+Database: postgres
+Username: postgres
+JDBC URL: jdbc:postgresql://db.zborevxprhonbyrfjvxk.supabase.co:5432/postgres?sslmode=require
 ```
 
-For Session pooler connections, the username normally includes the project reference, such as `postgres.project-ref`. Use the exact value supplied by the dashboard.
+This is Supabase's direct endpoint. It requires IPv6 connectivity unless the project has the Supabase IPv4 add-on. If the deployment network is IPv4-only, replace the host and username with the Session pooler values supplied by Supabase Dashboard → Connect; the JDBC structure and port 5432 remain the same.
 
 ## 3. Configure local environment
 
 Set these variables in the shell or an untracked local environment file:
 
 ```text
-DATABASE_URL=jdbc:postgresql://HOST:5432/postgres?sslmode=require
-DATABASE_USERNAME=USERNAME_FROM_SUPABASE
+DATABASE_HOST=db.zborevxprhonbyrfjvxk.supabase.co
+DATABASE_PORT=5432
+DATABASE_NAME=postgres
+DATABASE_URL=jdbc:postgresql://db.zborevxprhonbyrfjvxk.supabase.co:5432/postgres?sslmode=require
+DATABASE_USERNAME=postgres
 DATABASE_PASSWORD=DATABASE_PASSWORD
 DATABASE_POOL_SIZE=5
 DATABASE_MIN_IDLE=1
@@ -43,8 +50,8 @@ Flyway runs automatically when the Spring Boot API starts. The first startup app
 From `apps/api`:
 
 ```powershell
-$env:DATABASE_URL='jdbc:postgresql://HOST:5432/postgres?sslmode=require'
-$env:DATABASE_USERNAME='USERNAME_FROM_SUPABASE'
+$env:DATABASE_URL='jdbc:postgresql://db.zborevxprhonbyrfjvxk.supabase.co:5432/postgres?sslmode=require'
+$env:DATABASE_USERNAME='postgres'
 $env:DATABASE_PASSWORD='DATABASE_PASSWORD'
 mvn spring-boot:run
 ```

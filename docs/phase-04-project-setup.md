@@ -1,6 +1,6 @@
 # Phase 4: Project Setup
 
-Status: In progress  
+Status: Approved on 3 August 2026; Supabase connectivity verification carried forward
 Started: 3 August 2026  
 Prerequisites: Phases 1-3 approved
 
@@ -29,6 +29,7 @@ Establish a reproducible monorepo with runnable frontend and backend application
 - The local workstation currently provides Java 17. CI also uses Java 17 for reproducibility.
 - Java 21 remains the preferred production target from the architecture plan; upgrading requires changing the Maven property and CI runtime after a Java 21 JDK is available.
 - PostgreSQL is provided by Supabase and accessed from Spring Boot through JDBC. Docker and a local database are not part of the project.
+- The configured development endpoint is `db.zborevxprhonbyrfjvxk.supabase.co:5432/postgres` with username `postgres`, TLS required, and the password supplied only at runtime.
 
 ## 4. Repository structure
 
@@ -114,6 +115,10 @@ Docker is intentionally not used. The backend context test and packaged Maven bu
 
 Phase 4 is complete when a clean checkout can install dependencies, connect to Supabase, run both applications, execute all checks, and reproduce CI without undocumented local configuration.
 
-## 11. Next phase
+## 11. Approval record
+
+Phase 4 was approved to proceed on 3 August 2026. The repository, frontend and backend builds, automated tests, CI configuration, Flyway baseline, and Supabase connection contract are established. Live Supabase migration verification remains pending until local credentials are configured.
+
+## 12. Next phase
 
 Phase 5 will implement the public website shell, navigation, homepage, product discovery, reusable content components, forms, responsive behavior, and SEO foundations against API contracts.

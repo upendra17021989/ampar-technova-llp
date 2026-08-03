@@ -4,12 +4,13 @@ Corporate website and lead-generation platform for AMPAR Technova LLP.
 
 ## Project status
 
-Phases 1-3 are approved. Phase 4 (Project Setup) is in progress.
+Phases 1-4 are approved. Phase 5 (Frontend Development) is in progress.
 
 - [Phase 1: Discovery and Definition](docs/phase-01-discovery.md)
 - [Phase 2: Content Preparation](docs/phase-02-content-preparation.md)
 - [Phase 3: UX/UI Design](docs/phase-03-ux-ui-design.md)
 - [Phase 4: Project Setup](docs/phase-04-project-setup.md)
+- [Phase 5: Frontend Development](docs/phase-05-frontend-development.md)
 
 ## Workspace commands
 

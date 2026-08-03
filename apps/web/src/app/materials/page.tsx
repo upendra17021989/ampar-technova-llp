@@ -1,0 +1,6 @@
+import type { Metadata } from "next";
+import { PageHero } from "@/components/page-hero";
+
+const materials = ["PP", "PPH", "HDPE", "PVC", "CPVC", "PVDF", "ECTFE", "FEP", "PFA", "FRP"];
+export const metadata: Metadata = { title: "Materials", description: "Explore AMPAR Technova thermoplastic and FRP material expertise." };
+export default function MaterialsPage() { return <main id="main-content"><PageHero eyebrow="Material expertise" title="Material guidance starts with the process" description="Chemical concentration, temperature, pressure, mechanical load and service conditions must be reviewed together." action={{ label: "Request Material Review", href: "/request-a-quote" }} /><section className="section"><div className="shell"><div className="technical-note prominent"><strong>Engineering review required.</strong> Catalogue temperature values are not universal operating limits and are withheld until technical approval.</div><div className="material-grid">{materials.map((material) => <article className="material-card" key={material}><h2>{material}</h2><p>Properties, applications and limitations are being prepared from technically approved sources.</p></article>)}</div></div></section></main>; }
