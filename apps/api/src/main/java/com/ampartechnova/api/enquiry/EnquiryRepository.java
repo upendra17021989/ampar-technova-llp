@@ -2,7 +2,12 @@ package com.ampartechnova.api.enquiry;
 
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EnquiryRepository extends JpaRepository<Enquiry, UUID> {
+    Page<Enquiry> findAllByStatus(EnquiryStatus status, Pageable pageable);
+
+    long countByStatus(EnquiryStatus status);
 }

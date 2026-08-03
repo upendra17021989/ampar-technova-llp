@@ -4,7 +4,7 @@ Corporate website and lead-generation platform for AMPAR Technova LLP.
 
 ## Project status
 
-Phases 1-5 have established the public-site foundation. Phase 6 (Backend Development) is in progress.
+Phases 1-6 have established the public-site and API foundation. Phase 7 (Admin Panel) is in progress.
 
 - [Phase 1: Discovery and Definition](docs/phase-01-discovery.md)
 - [Phase 2: Content Preparation](docs/phase-02-content-preparation.md)
@@ -12,6 +12,7 @@ Phases 1-5 have established the public-site foundation. Phase 6 (Backend Develop
 - [Phase 4: Project Setup](docs/phase-04-project-setup.md)
 - [Phase 5: Frontend Development](docs/phase-05-frontend-development.md)
 - [Phase 6: Backend Development](docs/phase-06-backend-development.md)
+- [Phase 7: Admin Panel](docs/phase-07-admin-panel.md)
 
 ## Workspace commands
 

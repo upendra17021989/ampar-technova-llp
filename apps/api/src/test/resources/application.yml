@@ -10,3 +10,8 @@ spring:
       ddl-auto: create-drop
   flyway:
     enabled: false
+
+app:
+  admin:
+    username: admin
+    password: test-admin-password

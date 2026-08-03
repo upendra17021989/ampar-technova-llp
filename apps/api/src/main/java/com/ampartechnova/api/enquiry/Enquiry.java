@@ -72,8 +72,24 @@ public class Enquiry {
     }
 
     public String getReferenceNumber() { return referenceNumber; }
+    public UUID getId() { return id; }
+    public EnquiryType getEnquiryType() { return enquiryType; }
+    public String getName() { return name; }
+    public String getCompany() { return company; }
+    public String getEmail() { return email; }
+    public String getPhone() { return phone; }
+    public String getCountry() { return country; }
+    public String getProductSlug() { return productSlug; }
+    public String getIndustry() { return industry; }
+    public String getMessage() { return message; }
     public EnquiryStatus getStatus() { return status; }
     public Instant getCreatedAt() { return createdAt; }
+    public Instant getUpdatedAt() { return updatedAt; }
+
+    public void updateStatus(EnquiryStatus status, Instant now) {
+        this.status = status;
+        this.updatedAt = now;
+    }
 
     private String trimToNull(String value) {
         if (value == null || value.isBlank()) return null;
