@@ -4,7 +4,9 @@ Status: In progress
 
 ## Implemented foundation
 
-- Environment-configured administrator credentials with encoded in-memory password storage.
+- Persistent database-backed administrator accounts with encoded password storage.
+- One-time first-administrator bootstrap from environment configuration when the user table is empty.
+- Case-insensitive account lookup, enabled/disabled account enforcement, and database-loaded roles.
 - Role-protected `/api/admin/**` boundary using Spring Security.
 - Paginated enquiry listing, optionally filtered by status.
 - Enquiry detail retrieval containing the complete submitted request.
@@ -25,7 +27,8 @@ All endpoints require HTTP Basic authentication. Configure `ADMIN_USERNAME` and 
 
 ## Remaining Phase 7 work
 
-- Replace the single bootstrap administrator with persistent users and password-reset flows.
+- Add administrator account creation/management and password-reset flows.
+- Replace browser-stored HTTP Basic credentials with short-lived server sessions.
 - Add account lockout, session expiry, optional MFA, and auditable login events.
 - Add dashboard metrics and pagination controls to the administration screens.
 - Add enquiry ownership, assignment, internal notes, and audit history.
@@ -34,6 +37,7 @@ All endpoints require HTTP Basic authentication. Configure `ADMIN_USERNAME` and 
 
 ## Acceptance boundary
 
-This slice creates the protected enquiry-management API contract. HTTP Basic authentication is a
-bootstrap mechanism suitable only behind HTTPS. Production administration requires persistent users,
-short-lived sessions, lockout controls, audit history, and security testing.
+This slice creates the protected enquiry-management API contract and persists administrator identities.
+HTTP Basic authentication remains a transitional transport suitable only behind HTTPS. Production
+administration still requires short-lived sessions, account-management and password-reset workflows,
+lockout controls, audit history, and security testing.

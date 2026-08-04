@@ -10,6 +10,7 @@ Status: Foundation complete
 - Validated enquiry API with consent enforcement and published-product validation.
 - Unique `AMP-YYYYMMDD-XXXXXXXX` enquiry references.
 - Consistent validation, invalid-request, and not-found error payloads.
+- End-to-end Next.js Request a Quote submission with product preselection, optional country and industry, submission locking, API error display, and reference-number confirmation.
 - Explicit Spring Security allowlists for public APIs, health, and OpenAPI.
 - Springdoc OpenAPI and Swagger UI integration for Spring Boot 4.
 
@@ -48,7 +49,7 @@ Status: Foundation complete
 - Add file validation/storage integration and malware-scanning workflow.
 - Add rate limiting, bot protection, notification events, and transactional email integration.
 - Add audit events and administration-only enquiry operations.
-- Connect the Next.js content and RFQ flows.
+- Connect remaining Next.js content reads to the API where dynamic administration is required.
 - Run migrations and integration checks against the configured Supabase project.
 
 ## Acceptance boundary

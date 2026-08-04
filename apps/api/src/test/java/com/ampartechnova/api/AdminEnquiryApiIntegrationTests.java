@@ -45,6 +45,22 @@ class AdminEnquiryApiIntegrationTests {
     }
 
     @Test
+    void rejectsIncorrectPersistentAdminPassword() throws Exception {
+        mockMvc.perform(get("/api/admin/enquiries")
+                        .with(httpBasic("admin", "incorrect-password")))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void storesTheBootstrapPasswordAsAnEncodedHash() {
+        String passwordHash = jdbcTemplate.queryForObject(
+                "SELECT password_hash FROM admin_users WHERE username = 'admin'", String.class);
+        org.assertj.core.api.Assertions.assertThat(passwordHash)
+                .isNotEqualTo("test-admin-password")
+                .startsWith("{");
+    }
+
+    @Test
     void listsEnquiriesForAdmin() throws Exception {
         mockMvc.perform(get("/api/admin/enquiries?status=NEW")
                         .with(httpBasic("admin", "test-admin-password")))
