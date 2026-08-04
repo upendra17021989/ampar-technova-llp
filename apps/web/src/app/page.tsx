@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ProductCard } from "@/components/product-card";
+import { InteractiveProductExplorer } from "@/components/interactive-product-explorer";
 import { industries, productCategories, products, technologies } from "@/content/catalogue";
 
 export default function HomePage() {
@@ -39,7 +39,7 @@ export default function HomePage() {
       </section>
 
       <section className="section" aria-labelledby="featured-heading">
-        <div className="shell"><p className="eyebrow dark">Selected solutions</p><h2 id="featured-heading">Start with the application</h2><div className="three-grid">{products.slice(0, 3).map((product) => <ProductCard key={product.slug} product={product} />)}</div></div>
+        <div className="shell"><p className="eyebrow dark">Selected solutions</p><h2 id="featured-heading">Find the right solution for your application</h2><p className="section-intro">Choose a product family to quickly compare relevant equipment and material options.</p><InteractiveProductExplorer products={products} /></div>
       </section>
 
       <section className="section navy-section" id="capabilities" aria-labelledby="capabilities-heading">
