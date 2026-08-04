@@ -13,5 +13,7 @@ describe("HomePage", () => {
       }),
     ).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: /Request a Quote/i })).not.toHaveLength(0);
+    expect(screen.getAllByText("FRP Engineering")).not.toHaveLength(0);
+    expect(screen.getAllByText("Dual Laminate")).not.toHaveLength(0);
   });
 });

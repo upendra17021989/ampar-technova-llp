@@ -19,6 +19,7 @@ export function SiteFooter() {
           <h2>Company</h2>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
+          <Link href="/locations">Locations</Link>
           <Link href="/request-a-quote">Request a Quote</Link>
         </div>
         <address>
