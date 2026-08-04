@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { InteractiveProductExplorer } from "@/components/interactive-product-explorer";
+import { ParallaxHeroMedia } from "@/components/parallax-hero-media";
+import { HomepageEffects } from "@/components/homepage-effects";
 import { industries, productCategories, products, technologies } from "@/content/catalogue";
 
 export default function HomePage() {
   return (
     <main id="main-content">
+      <HomepageEffects />
       <section className="home-hero" aria-labelledby="home-heading">
-        <div className="home-hero-media" aria-hidden="true" />
+        <ParallaxHeroMedia />
         <div className="shell hero-grid">
           <div className="home-hero-content">
             <p className="eyebrow">Corrosion-resistant engineering solutions</p>
