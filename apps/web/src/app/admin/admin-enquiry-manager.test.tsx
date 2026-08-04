@@ -24,12 +24,15 @@ describe("AdminEnquiryManager", () => {
   afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
   it("authenticates and displays an enquiry", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, status: 200, json: async () => ({ content: [enquiry], totalElements: 1, totalPages: 1, number: 0 }) }));
+    vi.stubGlobal("fetch", vi.fn()
+      .mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({ token: "opaque-session-token" }) })
+      .mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({ content: [enquiry], totalElements: 1, totalPages: 1, number: 0 }) }));
     render(<AdminEnquiryManager />);
     fireEvent.change(screen.getByLabelText("Password"), { target: { value: "secret" } });
     fireEvent.click(screen.getByRole("button", { name: "Sign in" }));
     expect(await screen.findByText("AMP-20260803-ABCDEF12")).toBeInTheDocument();
-    expect(fetch).toHaveBeenCalledWith(expect.stringContaining("/api/admin/enquiries"), expect.objectContaining({ headers: expect.objectContaining({ Authorization: expect.stringMatching(/^Basic /) }) }));
+    expect(fetch).toHaveBeenCalledWith(expect.stringContaining("/api/admin/auth/login"), expect.objectContaining({ method: "POST" }));
+    expect(fetch).toHaveBeenCalledWith(expect.stringContaining("/api/admin/enquiries"), expect.objectContaining({ headers: expect.objectContaining({ Authorization: "Bearer opaque-session-token" }) }));
   });
 
   it("returns to login when credentials are rejected", async () => {
@@ -42,7 +45,7 @@ describe("AdminEnquiryManager", () => {
   });
 
   it("restores a session only after the initial hydrated render", async () => {
-    window.sessionStorage.setItem("ampar-admin-auth", "Basic stored-token");
+    window.sessionStorage.setItem("ampar-admin-session", "Bearer stored-token");
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, status: 200, json: async () => ({ content: [enquiry], totalElements: 1, totalPages: 1, number: 0 }) }));
     render(<AdminEnquiryManager />);
     expect(await screen.findByText("AMP-20260803-ABCDEF12")).toBeInTheDocument();

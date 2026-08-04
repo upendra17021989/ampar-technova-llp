@@ -3,7 +3,7 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080").replace(/\/$/, "");
-const SESSION_KEY = "ampar-admin-auth";
+const SESSION_KEY = "ampar-admin-session";
 const statuses = ["NEW", "ASSIGNED", "CONTACTED", "QUALIFIED", "QUOTED", "WON", "LOST", "CLOSED"] as const;
 
 type Status = (typeof statuses)[number];
@@ -24,10 +24,6 @@ type Enquiry = {
   updatedAt: string;
 };
 type EnquiryPage = { content: Enquiry[]; totalElements: number; totalPages: number; number: number };
-
-function authorization(username: string, password: string) {
-  return `Basic ${window.btoa(`${username}:${password}`)}`;
-}
 
 export function AdminEnquiryManager() {
   const [auth, setAuth] = useState("");
@@ -90,15 +86,34 @@ export function AdminEnquiryManager() {
     return () => { active = false; };
   }, [auth, data]);
 
-  function signIn(event: FormEvent<HTMLFormElement>) {
+  async function signIn(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const credential = authorization(username, password);
-    window.sessionStorage.setItem(SESSION_KEY, credential);
-    setAuth(credential);
-    setPassword("");
+    setLoading(true);
+    setError("");
+    try {
+      const response = await fetch(`${API_URL}/api/admin/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      if (response.status === 401 || response.status === 403) throw new Error("Invalid administrator credentials.");
+      if (!response.ok) throw new Error("The administration API is unavailable. Please try again.");
+      const session = await response.json() as { token: string };
+      const credential = `Bearer ${session.token}`;
+      window.sessionStorage.setItem(SESSION_KEY, credential);
+      setAuth(credential);
+      setPassword("");
+    } catch (requestError) {
+      setError(requestError instanceof Error ? requestError.message : "Unable to sign in.");
+    } finally {
+      setLoading(false);
+    }
   }
 
-  function signOut() {
+  async function signOut() {
+    if (auth) {
+      await fetch(`${API_URL}/api/admin/auth/logout`, { method: "POST", headers: { Authorization: auth } }).catch(() => undefined);
+    }
     window.sessionStorage.removeItem(SESSION_KEY);
     setAuth("");
     setData(null);
@@ -139,7 +154,7 @@ export function AdminEnquiryManager() {
       <div className="admin-toolbar">
         <div><strong>{data?.totalElements ?? 0}</strong><span> enquiries found</span></div>
         <label><span>Status</span><select value={filter} onChange={(event) => { const value = event.target.value as Status | ""; setFilter(value); void loadEnquiries(auth, value); }}><option value="">All statuses</option>{statuses.map((status) => <option key={status} value={status}>{status}</option>)}</select></label>
-        <button className="button admin-secondary" type="button" onClick={signOut}>Sign out</button>
+        <button className="button admin-secondary" type="button" onClick={() => void signOut()}>Sign out</button>
       </div>
       {error ? <p className="admin-error" role="alert">{error}</p> : null}
       {loading ? <p role="status">Loading enquiries…</p> : null}

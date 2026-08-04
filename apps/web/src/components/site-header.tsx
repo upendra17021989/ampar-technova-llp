@@ -93,7 +93,7 @@ export function SiteHeader() {
               aria-controls="about-navigation"
               onClick={() => setAboutOpen((current) => !current)}
             >
-              About Us <span aria-hidden="true">⌄</span>
+              <span>About Us</span><span className="nav-chevron" aria-hidden="true" />
             </button>
             <div id="about-navigation" className={aboutOpen ? "nav-dropdown-menu is-open" : "nav-dropdown-menu"}>
               {aboutNavigation.map(([label, href]) => (
