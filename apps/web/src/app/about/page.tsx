@@ -4,6 +4,7 @@ import { PageHero } from "@/components/page-hero";
 export const metadata: Metadata = {
   title: "About",
   description: "Learn about AMPAR Technova LLP, the Amar Group of Companies, and our engineering mission.",
+  alternates: { canonical: "/about" },
 };
 
 const mission = [

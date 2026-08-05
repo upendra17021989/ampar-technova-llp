@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { InteractiveProductExplorer } from "@/components/interactive-product-explorer";
 import { ParallaxHeroMedia } from "@/components/parallax-hero-media";
 import { HomepageEffects } from "@/components/homepage-effects";
 import { industries, productCategories, products, technologies } from "@/content/catalogue";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {
   return (

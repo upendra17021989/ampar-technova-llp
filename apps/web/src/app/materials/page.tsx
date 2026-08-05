@@ -6,6 +6,7 @@ import { PageHero } from "@/components/page-hero";
 export const metadata: Metadata = {
   title: "Materials",
   description: "Explore AMPAR Technova thermoset, thermoplastic and dual-laminate material expertise.",
+  alternates: { canonical: "/materials" },
 };
 
 const thermosetBenefits = ["Flexible product design and wall thickness", "High strength-to-weight ratio", "Heat and chemical resistance", "Electrical insulation", "Dimensional stability", "Low thermal conductivity", "Water and corrosion resistance", "Wide range of colours and finishes"];

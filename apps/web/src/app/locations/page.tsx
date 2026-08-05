@@ -5,6 +5,7 @@ import { PageHero } from "@/components/page-hero";
 export const metadata: Metadata = {
   title: "Locations",
   description: "Find AMPAR Technova LLP offices and manufacturing units in Ankleshwar and Dahej, Gujarat.",
+  alternates: { canonical: "/locations" },
 };
 
 const locations = [

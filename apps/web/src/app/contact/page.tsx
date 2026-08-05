@@ -6,6 +6,7 @@ import { PageHero } from "@/components/page-hero";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contact AMPAR Technova LLP in Ankleshwar and Dahej, Gujarat.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
