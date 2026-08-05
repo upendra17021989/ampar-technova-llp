@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SiteParallaxEffects } from "@/components/site-parallax-effects";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           Skip to main content
         </a>
         <SiteHeader />
+        <SiteParallaxEffects />
         {children}
         <SiteFooter />
       </body>

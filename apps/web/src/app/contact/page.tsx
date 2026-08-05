@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HomepageEffects } from "@/components/homepage-effects";
 import { PageHero } from "@/components/page-hero";
 
 export const metadata: Metadata = {
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main id="main-content">
+      <HomepageEffects />
       <PageHero eyebrow="Contact Us" title="Talk with AMPAR Technova LLP" description="Contact our team for product enquiries, technical consultation and quotation requests." />
       <section className="section" id="locations">
         <div className="shell">

@@ -4,12 +4,12 @@ import { useEffect } from "react";
 
 export function HomepageEffects() {
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     const targets = Array.from(document.querySelectorAll<HTMLElement>(
       ".home-hero-content, .hero-capabilities, main > .section",
     ));
 
-    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+    if (reduceMotion?.matches || !("IntersectionObserver" in window)) {
       targets.forEach((target) => target.classList.add("is-revealed"));
       return;
     }

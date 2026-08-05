@@ -7,8 +7,8 @@ export function ParallaxHeroMedia() {
 
   useEffect(() => {
     const media = mediaRef.current;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!media || reduceMotion.matches) return;
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    if (!media || reduceMotion?.matches) return;
 
     let frame = 0;
     const update = () => {

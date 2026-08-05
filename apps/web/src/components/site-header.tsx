@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const navigation = [
@@ -21,9 +22,18 @@ const aboutNavigation = [
 ] as const;
 
 export function SiteHeader() {
+  const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [currentHash, setCurrentHash] = useState("");
   const aboutRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateHash = () => setCurrentHash(window.location.hash);
+    updateHash();
+    window.addEventListener("hashchange", updateHash);
+    return () => window.removeEventListener("hashchange", updateHash);
+  }, [pathname]);
 
   useEffect(() => {
     function closeAbout(event: MouseEvent) {
@@ -45,6 +55,13 @@ export function SiteHeader() {
   function closeNavigation() {
     setOpen(false);
     setAboutOpen(false);
+  }
+
+  function isActive(href: string) {
+    const [route, hash] = href.split("#");
+    const normalizedRoute = route.replace(/\/$/, "") || "/";
+    if (hash) return pathname === normalizedRoute && currentHash === `#${hash}`;
+    return pathname === href || pathname.startsWith(`${href}/`);
   }
 
   return (
@@ -80,14 +97,14 @@ export function SiteHeader() {
         <nav id="primary-navigation" className={open ? "primary-nav is-open" : "primary-nav"} aria-label="Primary navigation">
           {navigation.map(([label, href]) => (
             href.includes("#") ? (
-              <a key={label} href={href} onClick={closeNavigation}>{label}</a>
+              <a key={label} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}>{label}</a>
             ) : (
-              <Link key={label} href={href} onClick={closeNavigation}>{label}</Link>
+              <Link key={label} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}>{label}</Link>
             )
           ))}
           <div className="nav-dropdown" ref={aboutRef}>
             <button
-              className="nav-dropdown-trigger"
+              className={pathname.startsWith("/about") ? "nav-dropdown-trigger nav-link-active" : "nav-dropdown-trigger"}
               type="button"
               aria-expanded={aboutOpen}
               aria-controls="about-navigation"
@@ -97,12 +114,12 @@ export function SiteHeader() {
             </button>
             <div id="about-navigation" className={aboutOpen ? "nav-dropdown-menu is-open" : "nav-dropdown-menu"}>
               {aboutNavigation.map(([label, href]) => (
-                <Link key={label} href={href} onClick={closeNavigation}>{label}</Link>
+                <Link key={label} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}>{label}</Link>
               ))}
             </div>
           </div>
-          <Link href="/contact" onClick={closeNavigation}>Contact Us</Link>
-          <Link className="button button-primary nav-cta" href="/request-a-quote" onClick={closeNavigation}>
+          <Link className={isActive("/contact") ? "nav-link-active" : undefined} aria-current={isActive("/contact") ? "page" : undefined} href="/contact" onClick={closeNavigation}>Contact Us</Link>
+          <Link className={isActive("/request-a-quote") ? "button button-primary nav-cta nav-cta-active" : "button button-primary nav-cta"} aria-current={isActive("/request-a-quote") ? "page" : undefined} href="/request-a-quote" onClick={closeNavigation}>
             Request a Quote
           </Link>
         </nav>
