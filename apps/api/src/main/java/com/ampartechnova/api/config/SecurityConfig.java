@@ -30,12 +30,13 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http, AdminBearerAuthenticationFilter bearerFilter) throws Exception {
         return http
                 .cors(Customizer.withDefaults())
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/enquiries", "/api/admin/**"))
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/enquiries", "/api/analytics/visits", "/api/admin/**"))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/actuator/health", "/actuator/info").permitAll()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/products", "/api/products/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/enquiries").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/analytics/visits").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/admin/auth/login").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())

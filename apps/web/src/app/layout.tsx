@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SiteParallaxEffects } from "@/components/site-parallax-effects";
+import { VisitorTracker } from "@/components/visitor-tracker";
 import { SeoStructuredData } from "@/components/seo-structured-data";
 import "./globals.css";
 
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "AMPAR Technova LLP",
-    description: "Engineering Tomorrow’s Corrosion-Resistant Solutions",
+    description: "Engineering Tomorrowâ€™s Corrosion-Resistant Solutions",
     images: [{ url: "/brand/ampar-technova-logo-banner.jpeg", width: 1494, height: 578, alt: "AMPAR Technova LLP" }],
     type: "website",
     locale: "en_IN",
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         </a>
         <SiteHeader />
         <SiteParallaxEffects />
+        <VisitorTracker />
         {children}
         <SiteFooter />
       </body>

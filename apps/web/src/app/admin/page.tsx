@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AdminEnquiryManager } from "./admin-enquiry-manager";
+import { AdminAnalytics } from "./admin-analytics";
 
 export const metadata: Metadata = {
   title: "Administration",
@@ -15,6 +16,7 @@ export default function AdminPage() {
           <h1>Enquiry administration</h1>
           <p>Review incoming requests and move qualified opportunities through the sales workflow.</p>
         </div>
+        <AdminAnalytics />
         <AdminEnquiryManager />
       </div>
     </main>
