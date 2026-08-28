@@ -10,7 +10,8 @@ const navigation = [
   ["Technologies", "/#technologies"],
   ["Materials", "/materials"],
   ["Industries", "/industries"],
-  ["Capabilities", "/#capabilities"],
+  ["Capabilities", "/capabilities"],
+  ["Quality", "/quality"],
 ] as const;
 
 const aboutNavigation = [

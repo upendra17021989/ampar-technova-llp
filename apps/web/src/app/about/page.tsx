@@ -56,10 +56,10 @@ export default function AboutPage() {
       </nav>
       <section className="section" id="who-we-are">
         <div className="shell readable about-intro">
-          <p className="eyebrow dark">Who We Are</p>
-          <h2>Corrosion-resistant engineering, designed around the process</h2>
-          <p>AMPAR Technova LLP is an engineering-driven company specializing in the design, manufacturing and supply of high-performance corrosion-resistant equipment and thermoplastic process solutions. We provide innovative products for industries where reliability, chemical resistance and long service life are essential.</p>
-          <p>With expertise in thermoplastics, FRP composites and dual-laminate technologies, we deliver customized solutions that meet international engineering standards and the demanding requirements of chemical-processing industries.</p>
+          <p className="eyebrow dark">Company Profile</p>
+          <h2>Who We Are</h2>
+          <p>AMPAR Technova LLP is an engineering-driven company specializing in the design, manufacturing, and supply of high-performance corrosion-resistant equipment and thermoplastic process solutions. We provide innovative products for industries where reliability, chemical resistance, and long service life are essential.</p>
+          <p>With expertise in thermoplastics, FRP composites, and dual laminate technologies, we deliver customized solutions that meet international engineering standards and the demanding requirements of chemical processing industries.</p>
         </div>
       </section>
       <section className="section section-muted" id="our-group">

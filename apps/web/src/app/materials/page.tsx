@@ -11,14 +11,20 @@ export const metadata: Metadata = {
 
 const thermosetBenefits = ["Flexible product design and wall thickness", "High strength-to-weight ratio", "Heat and chemical resistance", "Electrical insulation", "Dimensional stability", "Low thermal conductivity", "Water and corrosion resistance", "Wide range of colours and finishes"];
 const thermoplasticBenefits = ["Recyclable and reshapeable", "Chemical and detergent resistance", "Electrical insulation", "High impact resistance", "High-quality surface finish", "Resistance to chipping", "Good adherence to metals", "Corrosion resistance"];
+const materialGuide = [
+  ["PP", "Up to 95°C", "General chemical service"], ["PPH", "Up to 100°C", "Chemical tanks and process equipment"], ["HDPE", "Up to 60°C", "Storage and water duties"],
+  ["PVC", "Up to 60°C", "Acids and alkalis"], ["CPVC", "Up to 95°C", "Hot corrosive chemicals"], ["PVDF", "Up to 140°C", "High-purity applications"],
+  ["ECTFE", "Up to 150°C", "Highly aggressive chemicals"], ["FEP", "Up to 205°C", "High-temperature service"], ["PFA", "Up to 260°C", "Extreme corrosion resistance"],
+] as const;
 
 export default function MaterialsPage() {
   return (
     <main id="main-content">
       <HomepageEffects />
       <PageHero eyebrow="Material Expertise" title="Material guidance starts with the process" description="Thermosets, engineering thermoplastics and dual-laminate construction for demanding corrosion-resistant applications." action={{ label: "Request Material Review", href: "/request-a-quote" }} />
-      <nav className="section-jump-nav" aria-label="Material sections"><div className="shell"><a href="#thermosets">Thermosets</a><a href="#thermoplastics">Thermoplastics</a><a href="#applications">Applications</a><a href="#dual-laminate">Dual Laminate</a></div></nav>
+      <nav className="section-jump-nav" aria-label="Material sections"><div className="shell"><a href="#selection-guide">Selection Guide</a><a href="#thermosets">Thermosets</a><a href="#thermoplastics">Thermoplastics</a><a href="#applications">Applications</a><a href="#dual-laminate">Dual Laminate</a></div></nav>
       <section className="section"><div className="shell"><div className="technical-note prominent"><strong>Engineering review required.</strong> Material suitability depends on chemical concentration, temperature, pressure, mechanical load and service conditions. General properties are not universal operating limits.</div></div></section>
+      <section className="section section-muted material-section" id="selection-guide"><div className="shell"><p className="eyebrow dark">Initial comparison</p><h2>Thermoplastic material selection guide</h2><p className="section-lead">Use these indicative values only for early-stage comparison. They do not replace chemical-resistance data, pressure derating, welding factors or project-specific engineering.</p><div className="table-wrap"><table className="material-table"><thead><tr><th>Material</th><th>Indicative maximum temperature</th><th>Commonly considered for</th></tr></thead><tbody>{materialGuide.map(([material, temperature, use]) => <tr key={material}><th scope="row">{material}</th><td>{temperature}</td><td>{use}</td></tr>)}</tbody></table></div></div></section>
       <section className="section section-muted material-section" id="thermosets">
         <div className="shell material-detail-grid">
           <div><p className="eyebrow dark">1. Thermoset Plastics</p><h2>Permanent cross-linked structures</h2><p>Thermoset plastics begin as resins and harden through heat or a chemical curing reaction. Curing creates permanent cross-links that hold the molecular structure in place, so the finished material cannot be melted and returned to its original liquid state.</p><p>Their structural integrity and resistance to heat and chemicals make thermosets valuable in composite process equipment, electrical housings and other demanding applications.</p><div className="material-tags"><span>FRP</span><span>GRP</span><span>FRVE</span><span>Epoxy</span><span>Phenolic</span><span>Polyimide</span></div></div>

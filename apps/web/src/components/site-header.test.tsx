@@ -16,10 +16,10 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("navigation", { name: /primary navigation/i })).toHaveClass("is-open");
   });
 
-  it("uses native hash navigation for homepage sections", () => {
+  it("links to technology overview and the dedicated capabilities page", () => {
     render(<SiteHeader />);
     expect(screen.getByRole("link", { name: "Technologies" })).toHaveAttribute("href", "/#technologies");
-    expect(screen.getByRole("link", { name: "Capabilities" })).toHaveAttribute("href", "/#capabilities");
+    expect(screen.getByRole("link", { name: "Capabilities" })).toHaveAttribute("href", "/capabilities");
   });
 
   it("exposes locations and contact routes", () => {

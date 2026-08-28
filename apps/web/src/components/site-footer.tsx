@@ -14,12 +14,16 @@ export function SiteFooter() {
           <Link href="/products">Products</Link>
           <Link href="/materials">Materials</Link>
           <Link href="/industries">Industries</Link>
+          <Link href="/technologies/frp-engineering">FRP Engineering</Link>
+          <Link href="/technologies/dual-laminate-technology">Dual Laminate</Link>
         </div>
         <div>
           <h2>Company</h2>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
           <Link href="/locations">Locations</Link>
+          <Link href="/capabilities">Capabilities</Link>
+          <Link href="/quality">Quality & Standards</Link>
           <Link href="/request-a-quote">Request a Quote</Link>
         </div>
         <address>
