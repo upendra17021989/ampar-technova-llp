@@ -14,6 +14,7 @@ const PARALLAX_TARGETS = [
   ".material-expertise-photo",
   ".pollution-control-photo",
   ".quality-standards-inner",
+  ".product-image-gallery figure",
 ].join(",");
 
 export function SiteParallaxEffects() {
