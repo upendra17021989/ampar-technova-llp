@@ -11,6 +11,9 @@ const PARALLAX_TARGETS = [
   ".frp-image-stack figure",
   ".thermoplastic-photo",
   ".dual-technology-photo",
+  ".material-expertise-photo",
+  ".pollution-control-photo",
+  ".quality-standards-inner",
 ].join(",");
 
 export function SiteParallaxEffects() {

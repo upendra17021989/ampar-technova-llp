@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HomepageEffects } from "@/components/homepage-effects";
 import { PageHero } from "@/components/page-hero";
 
 export const metadata: Metadata = {
@@ -15,30 +16,21 @@ const mission = [
   "Ensure safety, reliability, and environmental responsibility",
 ];
 
-const whyAmpar = {
-  offers: [
-    "Customized Engineering Solutions",
-    "Corrosion-Resistant Equipment",
-    "International Design Standards",
-    "Precision Manufacturing",
-    "High-Performance Materials",
-    "Cost-Effective Solutions",
-    "Technical Support",
-    "Timely Delivery",
-  ],
-  strengths: [
-    "Engineering Expertise",
-    "Advanced Polymer Technology",
-    "Process Equipment Manufacturing",
-    "Customer-Centric Approach",
-    "Quality Assurance",
-    "Continuous Innovation",
-  ],
-};
+const partnerStrengths = [
+  { title: "Engineering Excellence", icon: "✹", description: "Customized solutions designed for every application." },
+  { title: "Material Expertise", icon: "◉", description: "Deep knowledge of FRP, thermoplastics and dual-laminate technologies." },
+  { title: "Advanced Manufacturing", icon: "★", description: "Modern fabrication techniques supported by skilled professionals." },
+  { title: "Customer Focus", icon: "♥", description: "Responsive technical support and long-term partnerships." },
+  { title: "Quality Assurance", icon: "⬢", description: "Every product is manufactured with strict quality controls." },
+  { title: "On-Time Delivery", icon: "ϟ", description: "Commitment to agreed schedules without compromising quality." },
+] as const;
+
+const companyValues = ["Innovation", "Integrity", "Safety", "Quality", "Customer Satisfaction", "Continuous Improvement"];
 
 export default function AboutPage() {
   return (
     <main id="main-content">
+      <HomepageEffects />
       <PageHero
         eyebrow="About AMPAR"
         title="Engineering-led corrosion-resistant solutions"
@@ -94,20 +86,11 @@ export default function AboutPage() {
         </div>
       </section>
       <section className="section" id="why-ampar">
-        <div className="shell why-panel">
-          <p className="eyebrow dark">Why AMPAR Technova LLP</p>
-          <h2>Engineering Excellence Built on Innovation</h2>
-          <p>We bring together material knowledge, application-focused design and group-wide manufacturing and project capability to develop solutions around each customer&apos;s process conditions.</p>
-          <div className="why-grid">
-            <article>
-              <h3>We Offer</h3>
-              <ul>{whyAmpar.offers.map((item) => <li key={item}>{item}</li>)}</ul>
-            </article>
-            <article>
-              <h3>Core Strengths</h3>
-              <ul>{whyAmpar.strengths.map((item) => <li key={item}>{item}</li>)}</ul>
-            </article>
-          </div>
+        <div className="shell reliable-partner">
+          <p className="eyebrow dark">Why Choose AMPAR Technova LLP</p>
+          <h2>Your Reliable Engineering Partner</h2>
+          <div className="partner-strength-grid">{partnerStrengths.map((strength) => <article key={strength.title}><div className="partner-strength-heading"><span aria-hidden="true">{strength.icon}</span><h3>{strength.title}</h3></div><p>{strength.description}</p></article>)}</div>
+          <section className="company-values" aria-labelledby="values-heading"><h3 id="values-heading">What We Stand For</h3><div>{companyValues.map((value) => <span key={value}>{value}</span>)}</div></section>
         </div>
       </section>
     </main>
