@@ -6,12 +6,16 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const navigation = [
-  ["Products", "/products"],
-  ["Technologies", "/#technologies"],
   ["Materials", "/materials"],
   ["Industries", "/industries"],
   ["Capabilities", "/capabilities"],
   ["Quality", "/quality"],
+] as const;
+
+const technologyNavigation = [
+  ["FRP Engineering", "/technologies/frp-engineering"],
+  ["Thermoplastic Fabrication", "/technologies/thermoplastic-fabrication"],
+  ["Dual Laminate Technology", "/technologies/dual-laminate-technology"],
 ] as const;
 
 const aboutNavigation = [
@@ -26,8 +30,10 @@ export function SiteHeader() {
   const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [technologiesOpen, setTechnologiesOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
   const aboutRef = useRef<HTMLDivElement>(null);
+  const technologiesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateHash = () => setCurrentHash(window.location.hash);
@@ -39,10 +45,14 @@ export function SiteHeader() {
   useEffect(() => {
     function closeAbout(event: MouseEvent) {
       if (!aboutRef.current?.contains(event.target as Node)) setAboutOpen(false);
+      if (!technologiesRef.current?.contains(event.target as Node)) setTechnologiesOpen(false);
     }
 
     function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") setAboutOpen(false);
+      if (event.key === "Escape") {
+        setAboutOpen(false);
+        setTechnologiesOpen(false);
+      }
     }
 
     document.addEventListener("mousedown", closeAbout);
@@ -56,6 +66,7 @@ export function SiteHeader() {
   function closeNavigation() {
     setOpen(false);
     setAboutOpen(false);
+    setTechnologiesOpen(false);
   }
 
   function isActive(href: string) {
@@ -96,6 +107,23 @@ export function SiteHeader() {
           <span>{open ? "Close" : "Menu"}</span>
         </button>
         <nav id="primary-navigation" className={open ? "primary-nav is-open" : "primary-nav"} aria-label="Primary navigation">
+          <Link className={isActive("/products") ? "nav-link-active" : undefined} aria-current={isActive("/products") ? "page" : undefined} href="/products" onClick={closeNavigation}>Products</Link>
+          <div className="nav-dropdown" ref={technologiesRef}>
+            <button
+              className={pathname.startsWith("/technologies") ? "nav-dropdown-trigger nav-link-active" : "nav-dropdown-trigger"}
+              type="button"
+              aria-expanded={technologiesOpen}
+              aria-controls="technologies-navigation"
+              onClick={() => setTechnologiesOpen((current) => !current)}
+            >
+              <span>Technologies</span><span className="nav-chevron" aria-hidden="true" />
+            </button>
+            <div id="technologies-navigation" className={technologiesOpen ? "nav-dropdown-menu is-open" : "nav-dropdown-menu"}>
+              {technologyNavigation.map(([label, href]) => (
+                <Link key={label} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}>{label}</Link>
+              ))}
+            </div>
+          </div>
           {navigation.map(([label, href]) => (
             href.includes("#") ? (
               <a key={label} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}>{label}</a>
