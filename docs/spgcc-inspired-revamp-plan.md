@@ -89,12 +89,12 @@ Deliverable: a responsive global shell shared by every public page.
 
 ## Phase 3: Homepage storytelling
 
-- [ ] Build the full-height media hero
-- [ ] Add the company positioning statement
-- [ ] Implement the product-capability sequence
-- [ ] Implement the technologies section
-- [ ] Implement the engineering process
-- [ ] Implement quality, industries, locations and final CTA sections
+- [x] Build the full-height media hero
+- [x] Add the company positioning statement
+- [x] Implement the product-capability sequence
+- [x] Implement the technologies section
+- [x] Implement the engineering process
+- [x] Implement quality, industries, locations and final CTA sections
 
 Deliverable: the complete responsive homepage in its final static visual state.
 
