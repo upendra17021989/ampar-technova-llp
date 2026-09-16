@@ -125,8 +125,8 @@ Deliverable: one consistent system across all public routes without excessive mo
 
 - [ ] Test from 360 px through large desktop
 - [ ] Test keyboard navigation and screen-reader landmarks
-- [ ] Test reduced-motion behavior
-- [ ] Optimize image loading and animation work
+- [x] Test reduced-motion behavior
+- [x] Optimize image loading and animation work
 - [ ] Validate Core Web Vitals
 - [ ] Run cross-browser checks
 - [ ] Add visual regression coverage

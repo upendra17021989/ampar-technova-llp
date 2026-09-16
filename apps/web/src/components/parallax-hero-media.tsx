@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 export function ParallaxHeroMedia() {
   const mediaRef = useRef<HTMLDivElement>(null);
@@ -28,5 +29,5 @@ export function ParallaxHeroMedia() {
     };
   }, []);
 
-  return <div ref={mediaRef} className="home-hero-media" aria-hidden="true" />;
+  return <div ref={mediaRef} className="home-hero-media" aria-hidden="true"><Image src="/images/frp-industrial-plant.png" alt="" fill priority sizes="100vw" /></div>;
 }
