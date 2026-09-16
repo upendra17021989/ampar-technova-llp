@@ -6,11 +6,16 @@ import { useEffect } from "react";
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080").replace(/\/$/, "");
 const SESSION_KEY = "ampar-visitor-session";
 
+export function isLocalHostname(hostname: string) {
+  const normalized = hostname.toLowerCase().replace(/^\[|\]$/g, "");
+  return normalized === "localhost" || normalized.endsWith(".localhost") || normalized === "127.0.0.1" || normalized === "::1";
+}
+
 export function VisitorTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname.startsWith("/admin") || navigator.doNotTrack === "1") return;
+    if (pathname.startsWith("/admin") || navigator.doNotTrack === "1" || isLocalHostname(window.location.hostname)) return;
     let sessionId = window.sessionStorage.getItem(SESSION_KEY);
     if (!sessionId) {
       sessionId = crypto.randomUUID();

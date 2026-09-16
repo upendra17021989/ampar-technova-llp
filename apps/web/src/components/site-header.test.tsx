@@ -16,10 +16,15 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("navigation", { name: /primary navigation/i })).toHaveClass("is-open");
   });
 
-  it("uses native hash navigation for homepage sections", () => {
+  it("exposes the three technology submenus and the dedicated capabilities page", () => {
     render(<SiteHeader />);
-    expect(screen.getByRole("link", { name: "Technologies" })).toHaveAttribute("href", "/#technologies");
-    expect(screen.getByRole("link", { name: "Capabilities" })).toHaveAttribute("href", "/#capabilities");
+    const trigger = screen.getByRole("button", { name: /Technologies/i });
+    fireEvent.click(trigger);
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByRole("link", { name: "FRP Engineering" })).toHaveAttribute("href", "/technologies/frp-engineering");
+    expect(screen.getByRole("link", { name: "Thermoplastic Fabrication" })).toHaveAttribute("href", "/technologies/thermoplastic-fabrication");
+    expect(screen.getByRole("link", { name: "Dual Laminate Technology" })).toHaveAttribute("href", "/technologies/dual-laminate-technology");
+    expect(screen.getByRole("link", { name: "Capabilities" })).toHaveAttribute("href", "/capabilities");
   });
 
   it("exposes locations and contact routes", () => {

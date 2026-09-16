@@ -20,7 +20,9 @@ type ApiError = {
 export function QuoteForm() {
   const params = useSearchParams();
   const selected = params.get("product") ?? "";
+  const selectedIndustry = params.get("industry") ?? "";
   const validSelectedProduct = products.some((product) => product.slug === selected) ? selected : "";
+  const validSelectedIndustry = industries.some((industry) => industry.slug === selectedIndustry) ? industries.find((industry) => industry.slug === selectedIndustry)?.name ?? "" : "";
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -42,7 +44,15 @@ export function QuoteForm() {
       country: String(formData.get("country") ?? "").trim() || null,
       productSlug: String(formData.get("productSlug") ?? "").trim() || null,
       industry: String(formData.get("industry") ?? "").trim() || null,
-      message: String(formData.get("message") ?? "").trim(),
+      message: [
+        String(formData.get("message") ?? "").trim(),
+        formData.get("chemical") ? `Chemical / fluid: ${String(formData.get("chemical")).trim()}` : "",
+        formData.get("concentration") ? `Concentration: ${String(formData.get("concentration")).trim()}` : "",
+        formData.get("temperature") ? `Temperature: ${String(formData.get("temperature")).trim()}` : "",
+        formData.get("pressure") ? `Pressure: ${String(formData.get("pressure")).trim()}` : "",
+        formData.get("capacity") ? `Capacity / dimensions: ${String(formData.get("capacity")).trim()}` : "",
+        formData.get("projectLocation") ? `Project location: ${String(formData.get("projectLocation")).trim()}` : "",
+      ].filter(Boolean).join("\n"),
       consentGiven: formData.get("consentGiven") === "on",
     };
 
@@ -78,8 +88,14 @@ export function QuoteForm() {
         <label><span>Email <b>Required</b></span><input name="email" type="email" autoComplete="email" maxLength={254} required /></label>
         <label><span>Phone <b>Required</b></span><input name="phone" type="tel" autoComplete="tel" maxLength={40} required /></label>
         <label><span>Country</span><input name="country" autoComplete="country-name" maxLength={100} /></label>
-        <label><span>Industry</span><select name="industry" defaultValue=""><option value="">Select an industry</option>{industries.map((industry) => <option key={industry.slug} value={industry.name}>{industry.name}</option>)}</select></label>
+        <label><span>Industry</span><select name="industry" defaultValue={validSelectedIndustry}><option value="">Select an industry</option>{industries.map((industry) => <option key={industry.slug} value={industry.name}>{industry.name}</option>)}</select></label>
         <label className="field-wide"><span>Product or equipment</span><select name="productSlug" defaultValue={validSelectedProduct}><option value="">Select a product</option>{products.map((product) => <option key={product.slug} value={product.slug}>{product.name}</option>)}</select></label>
+        <label><span>Chemical or process fluid</span><input name="chemical" maxLength={180} /></label>
+        <label><span>Concentration</span><input name="concentration" maxLength={80} placeholder="For example, 30%" /></label>
+        <label><span>Operating temperature</span><input name="temperature" maxLength={80} placeholder="Include unit" /></label>
+        <label><span>Operating pressure</span><input name="pressure" maxLength={80} placeholder="Include unit" /></label>
+        <label><span>Capacity or dimensions</span><input name="capacity" maxLength={160} /></label>
+        <label><span>Project location</span><input name="projectLocation" maxLength={180} /></label>
         <label className="field-wide"><span>Requirement summary <b>Required</b></span><textarea name="message" rows={5} minLength={10} maxLength={5000} required placeholder="Include capacity, chemical, concentration, temperature, pressure and project location where known." /></label>
       </div>
       <label className="consent"><input name="consentGiven" type="checkbox" required /><span>I agree that AMPAR may use this information to respond to my enquiry. <b>Required</b></span></label>

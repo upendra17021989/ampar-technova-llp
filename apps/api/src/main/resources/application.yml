@@ -19,6 +19,17 @@ spring:
     open-in-view: false
   flyway:
     enabled: true
+  mail:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: ${SMTP_AUTH:true}
+          starttls:
+            enable: ${SMTP_STARTTLS:true}
 
 server:
   port: ${PORT:${API_PORT:8080}}
@@ -38,6 +49,10 @@ management:
 
 app:
   web-origin: ${WEB_ORIGIN:http://localhost:3000}
+  enquiry-mail:
+    enabled: ${ENQUIRY_EMAIL_ENABLED:false}
+    recipient: ${ENQUIRY_EMAIL_RECIPIENT:sales@ampartechnova.com}
+    from: ${ENQUIRY_EMAIL_FROM:${SMTP_USERNAME:no-reply@ampartechnova.com}}
   analytics:
     hash-salt: ${ANALYTICS_HASH_SALT:change-this-analytics-salt}
   admin:

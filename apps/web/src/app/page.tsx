@@ -49,7 +49,7 @@ export default function HomePage() {
       </section>
 
       <section className="section navy-section" id="capabilities" aria-labelledby="capabilities-heading">
-        <div className="shell split"><div><p className="eyebrow">From design to delivery</p><h2 id="capabilities-heading">Engineering and manufacturing capability</h2><p>Process-equipment design, CAD modelling, material selection, plastic welding, FRP lamination, filament winding, inspection and on-site support.</p></div><div className="evidence-list"><span>Material verification</span><span>Dimensional inspection</span><span>Hydrostatic testing</span><span>Weld and laminate checks</span></div></div>
+        <div className="shell split"><div><p className="eyebrow">From design to delivery</p><h2 id="capabilities-heading">Engineering and manufacturing capability</h2><p>Process-equipment design, CAD modelling, material selection, plastic welding, FRP lamination, filament winding, inspection and on-site support.</p><Link className="button button-inverse" href="/capabilities">Explore Capabilities</Link></div><div className="evidence-list"><span>Material verification</span><span>Dimensional inspection</span><span>Hydrostatic testing</span><span>Weld and laminate checks</span></div></div>
       </section>
 
       <section className="section" aria-labelledby="industries-heading"><div className="shell"><div className="section-heading"><div><p className="eyebrow dark">Industries served</p><h2 id="industries-heading">Solutions connected to process challenges</h2></div><Link className="text-link" href="/industries">View industries →</Link></div><div className="industry-list">{industries.slice(0, 8).map((industry) => <span key={industry.slug}>{industry.name}</span>)}</div></div></section>

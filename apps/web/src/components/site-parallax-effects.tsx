@@ -8,6 +8,13 @@ const PARALLAX_TARGETS = [
   ".vision-panel",
   ".dual-laminate-panel",
   ".navy-section .split",
+  ".frp-image-stack figure",
+  ".thermoplastic-photo",
+  ".dual-technology-photo",
+  ".material-expertise-photo",
+  ".pollution-control-photo",
+  ".quality-standards-inner",
+  ".product-image-gallery figure",
 ].join(",");
 
 export function SiteParallaxEffects() {

@@ -10,10 +10,10 @@ describe("AboutPage", () => {
     expect(container.querySelector("#our-vision")).toBeInTheDocument();
     expect(container.querySelector("#our-mission")).toBeInTheDocument();
     expect(container.querySelector("#why-ampar")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Engineering Excellence Built on Innovation/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "We Offer" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Core Strengths" })).toBeInTheDocument();
-    expect(screen.getByText("Customized Engineering Solutions")).toBeInTheDocument();
-    expect(screen.getByText("Continuous Innovation")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Your Reliable Engineering Partner/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Engineering Excellence" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Quality Assurance" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "What We Stand For" })).toBeInTheDocument();
+    expect(screen.getByText("Continuous Improvement")).toBeInTheDocument();
   });
 });

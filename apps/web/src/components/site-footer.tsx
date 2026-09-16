@@ -5,12 +5,15 @@ const productLinks = [
   ["Products", "/products"],
   ["Materials", "/materials"],
   ["Industries", "/industries"],
-  ["Technologies", "/#technologies"],
+  ["FRP Engineering", "/technologies/frp-engineering"],
+  ["Dual Laminate", "/technologies/dual-laminate-technology"],
 ] as const;
 
 const companyLinks = [
   ["About AMPAR", "/about"],
   ["Locations", "/locations"],
+  ["Capabilities", "/capabilities"],
+  ["Quality & Standards", "/quality"],
   ["Contact", "/contact"],
   ["Request a Quote", "/request-a-quote"],
 ] as const;
@@ -47,6 +50,7 @@ export function SiteFooter() {
           <h3>Company</h3>
           {companyLinks.map(([label, href]) => <Link key={label} href={href}>{label}<span aria-hidden="true">&nearr;</span></Link>)}
         </nav>
+
 
         <address>
           <h3>Get in touch</h3>

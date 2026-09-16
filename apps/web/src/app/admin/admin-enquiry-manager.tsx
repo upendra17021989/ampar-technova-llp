@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080").replace(/\/$/, "");
@@ -31,7 +32,6 @@ export function AdminEnquiryManager() {
   const [password, setPassword] = useState("");
   const [filter, setFilter] = useState<Status | "">("");
   const [data, setData] = useState<EnquiryPage | null>(null);
-  const [selected, setSelected] = useState<Enquiry | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -117,23 +117,6 @@ export function AdminEnquiryManager() {
     window.sessionStorage.removeItem(SESSION_KEY);
     setAuth("");
     setData(null);
-    setSelected(null);
-  }
-
-  async function updateStatus(enquiry: Enquiry, status: Status) {
-    setError("");
-    const response = await fetch(`${API_URL}/api/admin/enquiries/${enquiry.id}/status`, {
-      method: "PATCH",
-      headers: { Authorization: auth, "Content-Type": "application/json" },
-      body: JSON.stringify({ status }),
-    });
-    if (!response.ok) {
-      setError("The enquiry status could not be updated.");
-      return;
-    }
-    const updated = (await response.json()) as Enquiry;
-    setSelected(updated);
-    setData((current) => current ? { ...current, content: current.content.map((item) => item.id === updated.id ? updated : item) } : current);
   }
 
   if (!auth) {
@@ -159,24 +142,15 @@ export function AdminEnquiryManager() {
       {error ? <p className="admin-error" role="alert">{error}</p> : null}
       {loading ? <p role="status">Loading enquiries…</p> : null}
       {!loading && data?.content.length === 0 ? <p className="admin-empty">No enquiries match this filter.</p> : null}
-      <div className="admin-grid">
-        <div className="admin-list" aria-label="Enquiries">
+      <div className="admin-list admin-list-page" aria-label="Enquiries">
           {data?.content.map((enquiry) => (
-            <button key={enquiry.id} type="button" className={`admin-list-item${selected?.id === enquiry.id ? " is-active" : ""}`} onClick={() => setSelected(enquiry)}>
+            <Link key={enquiry.id} className="admin-list-item" href={`/admin/enquiries/${enquiry.id}`}>
               <span className="admin-list-top"><strong>{enquiry.referenceNumber}</strong><span className={`status status-${enquiry.status.toLowerCase()}`}>{enquiry.status}</span></span>
               <span>{enquiry.name} · {enquiry.company}</span>
               <small>{new Date(enquiry.createdAt).toLocaleString()}</small>
-            </button>
+            </Link>
           ))}
-        </div>
-        <div className="admin-detail">
-          {selected ? <EnquiryDetail enquiry={selected} onStatusChange={(status) => void updateStatus(selected, status)} /> : <p>Select an enquiry to review its complete details.</p>}
-        </div>
       </div>
     </section>
   );
-}
-
-function EnquiryDetail({ enquiry, onStatusChange }: { enquiry: Enquiry; onStatusChange: (status: Status) => void }) {
-  return <article><div className="admin-detail-heading"><div><p className="eyebrow dark">{enquiry.enquiryType}</p><h2>{enquiry.referenceNumber}</h2></div><label><span>Status</span><select aria-label="Enquiry status" value={enquiry.status} onChange={(event) => onStatusChange(event.target.value as Status)}>{statuses.map((status) => <option key={status}>{status}</option>)}</select></label></div><dl className="admin-fields"><div><dt>Contact</dt><dd>{enquiry.name}</dd></div><div><dt>Company</dt><dd>{enquiry.company}</dd></div><div><dt>Email</dt><dd><a href={`mailto:${enquiry.email}`}>{enquiry.email}</a></dd></div><div><dt>Phone</dt><dd><a href={`tel:${enquiry.phone}`}>{enquiry.phone}</a></dd></div><div><dt>Product</dt><dd>{enquiry.productSlug ?? "Not specified"}</dd></div><div><dt>Industry</dt><dd>{enquiry.industry ?? "Not specified"}</dd></div><div className="admin-message"><dt>Requirement</dt><dd>{enquiry.message}</dd></div></dl></article>;
 }

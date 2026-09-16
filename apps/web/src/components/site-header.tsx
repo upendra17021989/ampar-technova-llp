@@ -3,15 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 
 const navigation = [
-  ["Products", "/products"],
-  ["Technologies", "/#technologies"],
-  ["Materials", "/materials"],
-  ["Industries", "/industries"],
-  ["Locations", "/locations"],
-  ["Capabilities", "/#capabilities"],
+  ["Materials", "/materials", "03"],
+  ["Industries", "/industries", "04"],
+  ["Capabilities", "/capabilities", "05"],
+  ["Quality", "/quality", "06"],
+  ["Locations", "/locations", "07"],
+] as const;
+
+const technologyNavigation = [
+  ["FRP Engineering", "/technologies/frp-engineering"],
+  ["Thermoplastic Fabrication", "/technologies/thermoplastic-fabrication"],
+  ["Dual Laminate Technology", "/technologies/dual-laminate-technology"],
 ] as const;
 
 const aboutNavigation = [
@@ -26,9 +32,11 @@ export function SiteHeader() {
   const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [technologiesOpen, setTechnologiesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
   const aboutRef = useRef<HTMLDivElement>(null);
+  const technologiesRef = useRef<HTMLDivElement>(null);
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -61,19 +69,21 @@ export function SiteHeader() {
   }, [open]);
 
   useEffect(() => {
-    function closeAbout(event: MouseEvent) {
+    function closeDropdowns(event: MouseEvent) {
       if (!aboutRef.current?.contains(event.target as Node)) setAboutOpen(false);
+      if (!technologiesRef.current?.contains(event.target as Node)) setTechnologiesOpen(false);
     }
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setAboutOpen(false);
+        setTechnologiesOpen(false);
         setOpen(false);
       }
     }
-    document.addEventListener("mousedown", closeAbout);
+    document.addEventListener("mousedown", closeDropdowns);
     document.addEventListener("keydown", closeOnEscape);
     return () => {
-      document.removeEventListener("mousedown", closeAbout);
+      document.removeEventListener("mousedown", closeDropdowns);
       document.removeEventListener("keydown", closeOnEscape);
     };
   }, []);
@@ -81,6 +91,7 @@ export function SiteHeader() {
   function closeNavigation() {
     setOpen(false);
     setAboutOpen(false);
+    setTechnologiesOpen(false);
   }
 
   function isActive(href: string) {
@@ -111,16 +122,31 @@ export function SiteHeader() {
 
         <nav id="primary-navigation" className={open ? "primary-nav is-open" : "primary-nav"} aria-label="Primary navigation">
           <div className="mobile-menu-meta" aria-hidden="true"><span>AMPAR / NAVIGATION</span><span>ANKLESHWAR / DAHEJ</span></div>
-          {navigation.map(([label, href], index) => (
-            href.includes("#") ? (
-              <a key={label} style={{ "--nav-index": index } as React.CSSProperties} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}><span className="mobile-nav-number" aria-hidden="true">0{index + 1}</span>{label}</a>
-            ) : (
-              <Link key={label} style={{ "--nav-index": index } as React.CSSProperties} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}><span className="mobile-nav-number" aria-hidden="true">0{index + 1}</span>{label}</Link>
-            )
+
+          <Link style={{ "--nav-index": 0 } as CSSProperties} className={isActive("/products") ? "nav-link-active" : undefined} aria-current={isActive("/products") ? "page" : undefined} href="/products" onClick={closeNavigation}>
+            <span className="mobile-nav-number" aria-hidden="true">01</span>Products
+          </Link>
+
+          <div className="nav-dropdown" ref={technologiesRef} style={{ "--nav-index": 1 } as CSSProperties}>
+            <button className={pathname.startsWith("/technologies") ? "nav-dropdown-trigger nav-link-active" : "nav-dropdown-trigger"} type="button" aria-expanded={technologiesOpen} aria-controls="technologies-navigation" onClick={() => setTechnologiesOpen((current) => !current)}>
+              <span><span className="mobile-nav-number" aria-hidden="true">02</span>Technologies</span><span className="nav-chevron" aria-hidden="true" />
+            </button>
+            <div id="technologies-navigation" className={technologiesOpen ? "nav-dropdown-menu is-open" : "nav-dropdown-menu"}>
+              {technologyNavigation.map(([label, href]) => (
+                <Link key={label} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}>{label}</Link>
+              ))}
+            </div>
+          </div>
+
+          {navigation.map(([label, href, number], index) => (
+            <Link key={label} style={{ "--nav-index": index + 2 } as CSSProperties} className={isActive(href) ? "nav-link-active" : undefined} aria-current={isActive(href) ? "page" : undefined} href={href} onClick={closeNavigation}>
+              <span className="mobile-nav-number" aria-hidden="true">{number}</span>{label}
+            </Link>
           ))}
-          <div className="nav-dropdown" ref={aboutRef}>
+
+          <div className="nav-dropdown" ref={aboutRef} style={{ "--nav-index": 7 } as CSSProperties}>
             <button className={pathname.startsWith("/about") ? "nav-dropdown-trigger nav-link-active" : "nav-dropdown-trigger"} type="button" aria-expanded={aboutOpen} aria-controls="about-navigation" onClick={() => setAboutOpen((current) => !current)}>
-              <span><span className="mobile-nav-number" aria-hidden="true">07</span>About Us</span><span className="nav-chevron" aria-hidden="true" />
+              <span><span className="mobile-nav-number" aria-hidden="true">08</span>About Us</span><span className="nav-chevron" aria-hidden="true" />
             </button>
             <div id="about-navigation" className={aboutOpen ? "nav-dropdown-menu is-open" : "nav-dropdown-menu"}>
               {aboutNavigation.map(([label, href]) => (
@@ -128,7 +154,10 @@ export function SiteHeader() {
               ))}
             </div>
           </div>
-          <Link style={{ "--nav-index": 7 } as React.CSSProperties} className={isActive("/contact") ? "nav-link-active" : undefined} aria-current={isActive("/contact") ? "page" : undefined} href="/contact" onClick={closeNavigation}><span className="mobile-nav-number" aria-hidden="true">08</span>Contact Us</Link>
+
+          <Link style={{ "--nav-index": 8 } as CSSProperties} className={isActive("/contact") ? "nav-link-active" : undefined} aria-current={isActive("/contact") ? "page" : undefined} href="/contact" onClick={closeNavigation}>
+            <span className="mobile-nav-number" aria-hidden="true">09</span>Contact Us
+          </Link>
           <Link className={isActive("/request-a-quote") ? "button button-primary nav-cta nav-cta-active" : "button button-primary nav-cta"} aria-current={isActive("/request-a-quote") ? "page" : undefined} href="/request-a-quote" onClick={closeNavigation}>Request a Quote <span aria-hidden="true">&rarr;</span></Link>
           <div className="mobile-menu-contact">
             <a href="tel:+917600670953">+91 76006 70953</a>
