@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { HomepageEffects } from "@/components/homepage-effects";
 
 export const metadata: Metadata = { title: "Contact", description: "Contact AMPAR Technova LLP in Ankleshwar and Dahej, Gujarat.", alternates: { canonical: "/contact" } };
 
 export default function ContactPage() {
-  return <main id="main-content">
+  return <main id="main-content" className="interior-page contact-page">
     <HomepageEffects />
     <section className="contact-presentation" aria-labelledby="contact-heading">
       <aside className="contact-presentation-aside">
-        <Image src="/brand/ampar-technova-full-logo.png" alt="AMPAR Technova LLP" width={1494} height={578} priority />
+        <div className="contact-brand"><svg viewBox="0 0 64 72" aria-hidden="true"><path className="brand-symbol-top" d="M32 2 61 18 32 34 3 18 32 2Z"/><path className="brand-symbol-middle" d="M3 27 32 43 61 27v16L32 59 3 43V27Z"/><path className="brand-symbol-bottom" d="M3 46 32 62 61 46v10L32 72 3 56V46Z"/></svg><span>AMPAR <b>TECHNOVA LLP</b></span></div>
         <div><p className="eyebrow">Contact Us</p><h1 id="contact-heading">Get in Touch</h1><p>Connect with our team for product enquiries, technical consultation and quotation requests.</p></div>
         <div className="contact-aside-actions"><a href="https://www.ampartechnova.com">www.ampartechnova.com</a><Link className="button button-inverse" href="/request-a-quote">Request a Quote</Link></div>
       </aside>

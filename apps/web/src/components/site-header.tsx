@@ -162,7 +162,7 @@ export function SiteHeader() {
           <Link style={{ "--nav-index": 8 } as CSSProperties} className={isActive("/contact") ? "nav-link-active" : undefined} aria-current={isActive("/contact") ? "page" : undefined} href="/contact" onClick={closeNavigation}>
             <span className="mobile-nav-number" aria-hidden="true">09</span>Contact Us
           </Link>
-          <Link className={isActive("/request-a-quote") ? "button button-primary nav-cta nav-cta-active" : "button button-primary nav-cta"} aria-current={isActive("/request-a-quote") ? "page" : undefined} href="/request-a-quote" onClick={closeNavigation}>Request a Quote <span aria-hidden="true">&rarr;</span></Link>
+          <Link className={isActive("/request-a-quote") ? "button button-primary nav-cta nav-cta-active" : "button button-primary nav-cta"} aria-current={isActive("/request-a-quote") ? "page" : undefined} href="/request-a-quote" onClick={closeNavigation}>Request a Quote <span aria-hidden="true">→</span></Link>
           <div className="mobile-menu-contact">
             <a href="tel:+917600670953">+91 76006 70953</a>
             <a href="mailto:Sales@ampartechnova.com">Sales@ampartechnova.com</a>

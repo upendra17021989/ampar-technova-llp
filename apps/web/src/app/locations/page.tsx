@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HomepageEffects } from "@/components/homepage-effects";
 import { PageHero } from "@/components/page-hero";
 
 export const metadata: Metadata = {
@@ -27,7 +28,8 @@ const locations = [
 
 export default function LocationsPage() {
   return (
-    <main id="main-content">
+    <main id="main-content" className="interior-page locations-page">
+      <HomepageEffects />
       <PageHero
         eyebrow="Our Locations"
         title="Engineering and manufacturing in Gujarat"

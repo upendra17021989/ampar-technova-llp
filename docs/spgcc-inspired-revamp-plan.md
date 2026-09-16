@@ -111,13 +111,13 @@ Deliverable: production motion without making content access depend on animation
 
 ## Phase 5: Interior pages
 
-- [ ] Products and product details
-- [ ] Materials
-- [ ] Industries
-- [ ] About
-- [ ] Locations
-- [ ] Contact
-- [ ] Request a quote
+- [x] Products and product details
+- [x] Materials
+- [x] Industries
+- [x] About
+- [x] Locations
+- [x] Contact
+- [x] Request a quote
 
 Deliverable: one consistent system across all public routes without excessive motion.
 

@@ -29,7 +29,7 @@ const companyValues = ["Innovation", "Integrity", "Safety", "Quality", "Customer
 
 export default function AboutPage() {
   return (
-    <main id="main-content">
+    <main id="main-content" className="interior-page about-page">
       <HomepageEffects />
       <PageHero
         eyebrow="About AMPAR"

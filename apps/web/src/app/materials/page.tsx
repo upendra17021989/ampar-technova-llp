@@ -20,7 +20,7 @@ const materialGuide = [
 
 export default function MaterialsPage() {
   return (
-    <main id="main-content">
+    <main id="main-content" className="interior-page materials-page">
       <HomepageEffects />
       <PageHero eyebrow="Material Expertise" title="Material guidance starts with the process" description="Thermosets, engineering thermoplastics and dual-laminate construction for demanding corrosion-resistant applications." action={{ label: "Request Material Review", href: "/request-a-quote" }} />
       <nav className="section-jump-nav" aria-label="Material sections"><div className="shell"><a href="#selection-guide">Selection Guide</a><a href="#thermosets">Thermosets</a><a href="#thermoplastics">Thermoplastics</a><a href="#applications">Applications</a><a href="#dual-laminate">Dual Laminate</a></div></nav>

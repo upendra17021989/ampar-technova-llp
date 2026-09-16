@@ -26,7 +26,7 @@ export function SiteFooter() {
           <h2>Build corrosion resistance into your process.</h2>
           <div>
             <p>Share your chemical, temperature, pressure, capacity and schedule. Our engineering team will review the application.</p>
-            <Link className="button button-primary" href="/request-a-quote">Discuss your requirement <span aria-hidden="true">&rarr;</span></Link>
+            <Link className="button button-primary" href="/request-a-quote">Discuss your requirement <span aria-hidden="true">→</span></Link>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ export function SiteFooter() {
       <div className="shell footer-bottom">
         <span>&copy; {new Date().getFullYear()} AMPAR Technova LLP</span>
         <span>ENGINEERED FOR DEMANDING PROCESS CONDITIONS</span>
-        <a href="#main-content">Back to top &uarr;</a>
+        <a href="#main-content">Back to top ↑</a>
       </div>
     </footer>
   );

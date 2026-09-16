@@ -6,6 +6,7 @@ const revealSelector = [
   ".home-hero-content", ".hero-capabilities", ".positioning-grid", ".home-section-heading",
   ".product-story-card", ".technology-grid > article", ".process-intro", ".process-steps > li",
   ".quality-collage", ".quality-copy", ".industries-title", ".reach-grid > div", ".final-cta .shell",
+  ".interior-page .editorial-page-hero-grid > div", ".interior-page .section > .shell", ".interior-page .contact-presentation-details > section",
 ].join(",");
 
 export function HomepageEffects() {

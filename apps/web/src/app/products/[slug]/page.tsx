@@ -50,7 +50,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ampartechnova.com";
   const structuredData = { "@context": "https://schema.org", "@graph": [{ "@type": "Product", name: product.name, description: product.summary, category: product.category, material: product.materials, manufacturer: { "@id": `${siteUrl}/#organization` }, url: `${siteUrl}/products/${product.slug}`, ...(gallery[0] ? { image: `${siteUrl}${gallery[0].src}` } : {}) }, { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Products", item: `${siteUrl}/products` }, { "@type": "ListItem", position: 2, name: product.name, item: `${siteUrl}/products/${product.slug}` }] }] };
 
-  return <main id="main-content">
+  return <main id="main-content" className="interior-page product-detail-page">
     <HomepageEffects />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
     <section className="page-hero"><div className="shell narrow"><nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/products">Products</Link><span aria-hidden="true">/</span><span>{product.name}</span></nav><p className="eyebrow">{product.category}</p><h1>{product.name}</h1><p className="lead">{product.summary}</p><div className="action-row"><Link className="button button-primary" href={`/request-a-quote?product=${product.slug}`}>Request a Quote</Link><Link className="button button-inverse" href="/capabilities">View Capabilities</Link></div></div></section>
