@@ -46,6 +46,6 @@ describe("SiteHeader", () => {
   it("uses the full company name in the brand", () => {
     render(<SiteHeader />);
     expect(screen.getByRole("link", { name: "AMPAR Technova LLP home" })).toBeInTheDocument();
-    expect(screen.getByAltText("AMPAR Technova LLP")).toBeInTheDocument();
+    expect(screen.getByText("Technova LLP")).toBeInTheDocument();
   });
 });

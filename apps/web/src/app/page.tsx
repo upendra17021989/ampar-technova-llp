@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HomepageEffects } from "@/components/homepage-effects";
+import { LogoIntro } from "@/components/logo-intro";
 import { ParallaxHeroMedia } from "@/components/parallax-hero-media";
 import { industries, productCategories, technologies } from "@/content/catalogue";
 
@@ -21,6 +22,7 @@ const qualityEvidence = ["Material verification", "Dimensional inspection", "Wel
 export default function HomePage() {
   return (
     <main id="main-content" className="editorial-home">
+      <LogoIntro />
       <HomepageEffects />
       <section className="home-hero" aria-labelledby="home-heading">
         <ParallaxHeroMedia />

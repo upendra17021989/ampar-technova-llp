@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const productLinks = [
@@ -35,7 +34,12 @@ export function SiteFooter() {
       <div className="shell footer-grid">
         <div className="footer-identity">
           <Link className="footer-brand" href="/" aria-label="AMPAR Technova LLP home">
-            <Image src="/brand/ampar-technova-full-logo.png" alt="AMPAR Technova LLP" width={1494} height={578} />
+            <svg className="footer-brand-symbol" viewBox="0 0 64 72" aria-hidden="true">
+              <path className="brand-symbol-top" d="M32 2 61 18 32 34 3 18 32 2Z" />
+              <path className="brand-symbol-middle" d="M3 27 32 43 61 27v16L32 59 3 43V27Z" />
+              <path className="brand-symbol-bottom" d="M3 46 32 62 61 46v10L32 72 3 56V46Z" />
+            </svg>
+            <span><strong>AMPAR</strong><b>Technova LLP</b><small>Engineering corrosion resistance</small></span>
           </Link>
           <p>Corrosion-resistant FRP, thermoplastic, dual-laminate and process equipment solutions.</p>
           <span className="footer-index">IND / 24.5788 N / 73.6893 E</span>
@@ -43,12 +47,12 @@ export function SiteFooter() {
 
         <nav aria-label="Solutions">
           <h3>Solutions</h3>
-          {productLinks.map(([label, href]) => <Link key={label} href={href}>{label}<span aria-hidden="true">&nearr;</span></Link>)}
+          {productLinks.map(([label, href]) => <Link key={label} href={href}>{label}<span aria-hidden="true">↗</span></Link>)}
         </nav>
 
         <nav aria-label="Company">
           <h3>Company</h3>
-          {companyLinks.map(([label, href]) => <Link key={label} href={href}>{label}<span aria-hidden="true">&nearr;</span></Link>)}
+          {companyLinks.map(([label, href]) => <Link key={label} href={href}>{label}<span aria-hidden="true">↗</span></Link>)}
         </nav>
 
 

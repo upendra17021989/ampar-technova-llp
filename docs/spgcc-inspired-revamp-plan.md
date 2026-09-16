@@ -100,12 +100,12 @@ Deliverable: the complete responsive homepage in its final static visual state.
 
 ## Phase 4: Motion integration
 
-- [ ] Add the one-session logo intro
-- [ ] Add masked headings and staggered reveals
-- [ ] Add product stacking and scroll progress
-- [ ] Add technology and process timelines
-- [ ] Add image reveals, marquees and CTA convergence
-- [ ] Add mobile and reduced-motion alternatives
+- [x] Add the one-session logo intro
+- [x] Add masked headings and staggered reveals
+- [x] Add product stacking and scroll progress
+- [x] Add technology and process timelines
+- [x] Add image reveals, marquees and CTA convergence
+- [x] Add mobile and reduced-motion alternatives
 
 Deliverable: production motion without making content access depend on animation.
 

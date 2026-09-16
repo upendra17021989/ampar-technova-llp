@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { CSSProperties } from "react";
@@ -112,7 +111,12 @@ export function SiteHeader() {
     <header className={headerClass} data-site-header>
       <div className="shell header-inner">
         <Link className="brand" href="/" aria-label="AMPAR Technova LLP home" onClick={closeNavigation}>
-          <Image className="brand-logo-full" src="/brand/ampar-technova-full-logo.png" alt="AMPAR Technova LLP" width={1494} height={578} priority />
+          <svg className="brand-symbol" viewBox="0 0 64 72" aria-hidden="true">
+            <path className="brand-symbol-top" d="M32 2 61 18 32 34 3 18 32 2Z" />
+            <path className="brand-symbol-middle" d="M3 27 32 43 61 27v16L32 59 3 43V27Z" />
+            <path className="brand-symbol-bottom" d="M3 46 32 62 61 46v10L32 72 3 56V46Z" />
+          </svg>
+          <span className="brand-wordmark"><strong>AMPAR</strong><span>Technova LLP</span><small>Engineering corrosion resistance</small></span>
         </Link>
 
         <button className="menu-button" type="button" aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen((current) => !current)}>
