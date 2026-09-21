@@ -11,6 +11,7 @@ import "./globals.css";
 import "lenis/dist/lenis.css";
 import "./motion.css";
 import "./responsive.css";
+import "./imagery.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),

@@ -1,0 +1,56 @@
+/* Grade equipment photography to the surrounding section, without tinting
+   brand assets, the technical drawing, or product captions. */
+.product-story-media { background: var(--graphite-950); isolation: isolate; }
+.product-story-media img { filter: saturate(.78) contrast(1.03) brightness(.96); }
+.product-story-media::before,
+.product-story-media::after,
+.technology-media::after,
+.quality-image::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+}
+.product-story-media::before {
+  background: rgba(13,120,129,.1);
+  mix-blend-mode: color;
+}
+.product-story-media::after {
+  background:
+    linear-gradient(90deg,rgba(17,24,31,.35),transparent 12%,transparent 76%,var(--graphite-950)),
+    linear-gradient(0deg,rgba(17,24,31,.55),transparent 18%,transparent 92%,rgba(17,24,31,.2));
+}
+.product-story-card:nth-of-type(even) .product-story-media::after {
+  background:
+    linear-gradient(90deg,var(--graphite-950),transparent 24%,transparent 88%,rgba(17,24,31,.35)),
+    linear-gradient(0deg,rgba(17,24,31,.55),transparent 18%,transparent 92%,rgba(17,24,31,.2));
+}
+
+.technology-media { background: var(--bone); isolation: isolate; }
+.technology-media img { filter: saturate(.82) contrast(.97); }
+.technology-media::after {
+  background: linear-gradient(0deg,var(--bone),rgba(243,240,232,.12) 24%,rgba(243,240,232,.06) 80%);
+}
+.quality-image { isolation: isolate; }
+.quality-image img { filter: saturate(.84) contrast(1.02); }
+.quality-image::after { background: linear-gradient(135deg,rgba(13,120,129,.1),transparent 65%); }
+
+:is(.frp-image-stack,.thermoplastic-photo,.dual-technology-photo,.material-expertise-photo,.pollution-control-photo,.product-image-gallery) img {
+  filter: saturate(.86) contrast(1.02);
+}
+:is(.frp-image-stack figure,.thermoplastic-photo,.material-expertise-photo,.pollution-control-photo) {
+  border-color: var(--line-dark);
+  background: var(--steel-50);
+}
+
+@media(max-width:1023px) {
+  /* On stacked cards the photo meets the copy below, rather than at a side. */
+  .product-story-media::after,
+  .product-story-card:nth-of-type(even) .product-story-media::after {
+    background:
+      linear-gradient(0deg,var(--graphite-950),rgba(17,24,31,.16) 22%,transparent 48%),
+      linear-gradient(90deg,rgba(17,24,31,.12),transparent 10%,transparent 90%,rgba(17,24,31,.12));
+  }
+  .product-story-media img { filter: saturate(.86) contrast(1.02); }
+}

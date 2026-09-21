@@ -84,3 +84,19 @@ body.menu-open{overflow:hidden}.site-header{position:fixed;inset:0 0 auto;z-inde
 
 /* Keep the sticky section menu flush with the responsive site header. */
 @media(max-width:60rem){:root{--site-header-height:4.75rem}}
+
+/* Keep the category CTA legible against the light catalogue toolbar. */
+.products-index .filter-strip > .filter-category-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  background: var(--navy-900);
+  color: var(--white);
+  font-size: .75rem;
+  font-weight: 800;
+}
+.products-index .filter-strip > .filter-category-link:hover,
+.products-index .filter-strip > .filter-category-link:focus-visible {
+  background: var(--teal-700);
+  color: var(--white);
+}
