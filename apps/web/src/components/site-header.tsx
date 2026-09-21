@@ -39,6 +39,13 @@ export function SiteHeader() {
   const isHome = pathname === "/";
 
   useEffect(() => {
+    const desktop = window.matchMedia?.("(min-width: 80.001rem)");
+    const closeOnDesktop = () => { if (desktop?.matches) setOpen(false); };
+    desktop?.addEventListener?.("change", closeOnDesktop);
+    return () => desktop?.removeEventListener?.("change", closeOnDesktop);
+  }, []);
+
+  useEffect(() => {
     const updateHash = () => setCurrentHash(window.location.hash);
     updateHash();
     window.addEventListener("hashchange", updateHash);

@@ -1,4 +1,5 @@
 import { act, render, screen } from "@testing-library/react";
+import { StrictMode } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { LogoIntro } from "./logo-intro";
 
@@ -16,7 +17,7 @@ describe("LogoIntro", () => {
     act(() => vi.advanceTimersByTime(1));
     expect(screen.getByText("AMPAR TECHNOVA")).toBeInTheDocument();
     expect(document.body).toHaveClass("intro-active");
-    act(() => vi.advanceTimersByTime(2100));
+    act(() => vi.advanceTimersByTime(2300));
     expect(screen.queryByText("AMPAR TECHNOVA")).not.toBeInTheDocument();
     first.unmount();
     render(<LogoIntro />);
@@ -29,5 +30,17 @@ describe("LogoIntro", () => {
     render(<LogoIntro />);
     act(() => vi.runAllTimers());
     expect(screen.queryByText("AMPAR TECHNOVA")).not.toBeInTheDocument();
+  });
+
+  it("survives Strict Mode and releases the entrance when the curtain opens", () => {
+    const reveal = vi.fn();
+    window.addEventListener("ampar:intro-reveal", reveal);
+    const view = render(<StrictMode><LogoIntro /></StrictMode>);
+    act(() => vi.advanceTimersByTime(1251));
+    expect(reveal).toHaveBeenCalledTimes(1);
+    expect(screen.getByText("AMPAR TECHNOVA")).toBeInTheDocument();
+    view.unmount();
+    expect(document.body).not.toHaveClass("intro-active");
+    window.removeEventListener("ampar:intro-reveal", reveal);
   });
 });

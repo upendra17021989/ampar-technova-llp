@@ -1,33 +1,15 @@
-"use client";
+﻿"use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 export function ParallaxHeroMedia() {
-  const mediaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const media = mediaRef.current;
-    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
-    if (!media || reduceMotion?.matches) return;
-
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const offset = Math.min(window.scrollY * 0.18, 90);
-      media.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`;
-    };
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
-
-  return <div ref={mediaRef} className="home-hero-media" aria-hidden="true"><Image src="/images/frp-industrial-plant.png" alt="" fill priority sizes="100vw" /></div>;
+  return <>
+    <div className="hero-blueprint" aria-hidden="true">
+      <div className="hero-blueprint-art">
+        <Image src="/images/frp-industrial-plant-blueprint.png" alt="" fill priority sizes="110vw" />
+      </div>
+      <div className="shell hero-drawing-caption"><span>Material intelligence. Engineered in.</span><span>From process conditions to fabrication.</span></div>
+    </div>
+    <div className="home-hero-media" aria-hidden="true"><Image src="/images/frp-industrial-plant.png" alt="" fill priority sizes="110vw" /></div>
+  </>;
 }

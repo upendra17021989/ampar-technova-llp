@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
+import { FooterReveal } from "@/components/footer-reveal";
 import { SiteHeader } from "@/components/site-header";
 import { SiteParallaxEffects } from "@/components/site-parallax-effects";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { VisitorTracker } from "@/components/visitor-tracker";
 import { SeoStructuredData } from "@/components/seo-structured-data";
 import "./globals.css";
+import "lenis/dist/lenis.css";
+import "./motion.css";
+import "./responsive.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
@@ -46,9 +51,10 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         </a>
         <SiteHeader />
         <SiteParallaxEffects />
+        <SmoothScroll />
         <VisitorTracker />
         {children}
-        <SiteFooter />
+        <FooterReveal><SiteFooter /></FooterReveal>
       </body>
     </html>
   );

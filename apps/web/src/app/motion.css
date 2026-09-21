@@ -1,0 +1,99 @@
+/* Reference motion: expo.out reveals, power3.inOut wipes, native touch scrolling. */
+.footer-reveal { position: relative; background: var(--graphite-950); }
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  /* The wrapper retains the full footer height and clips the layer beneath
+     the page edge, without adding an artificial scroll pause or spacer. */
+  .footer-reveal-active { clip-path: inset(0); }
+  .footer-reveal-active > .site-footer { transform: translate3d(0,var(--footer-reveal-y,0px),0); }
+  /* Keyboard navigation uses normal document positions for every link. */
+  .footer-reveal-active:focus-within { clip-path: none; }
+  .footer-reveal-active:focus-within > .site-footer { transform: none; }
+}
+.intro-active { overflow: hidden; }
+.reference-intro { position: fixed; inset: 0; z-index: 1000; pointer-events: none; }
+.intro-curtain { position: absolute; inset: 0; clip-path: polygon(-35vmin 0, 135% 0, 135% 100%, -35vmin 100%, 0 50%); }
+.intro-curtain-accent { background: var(--orange-600); }
+.intro-curtain-ink { display: grid; align-content: center; justify-content: center; background: var(--navy-950); color: white; }
+.logo-intro-mark { display: flex; align-items: center; gap: 1rem; }
+.logo-intro-mark svg { width: 5.5rem; fill: transparent; stroke: var(--orange-500); stroke-width: 2; }
+.logo-intro-mark svg path { animation: intro-fill 1s .15s ease-in-out both; }
+.logo-intro-mark span { font-family: var(--font-heading); font-size: clamp(1.5rem,5vw,4rem); font-weight: 800; letter-spacing: .04em; }
+.logo-intro-line { height: 1px; margin-top: 1.2rem; background: #ffffff28; }
+.logo-intro-line i { display: block; height: 100%; background: var(--orange-500); transform-origin: left; animation: intro-load 1s .15s cubic-bezier(.65,0,.35,1) both; }
+.intro-curtain-ink > p { font: .65rem var(--font-mono); letter-spacing: .18em; text-transform: uppercase; color: #aabac6; }
+.reference-intro.is-leaving .intro-curtain { animation: intro-chevron .8s cubic-bezier(.76,0,.24,1) forwards; }
+.reference-intro.is-leaving .intro-curtain-accent { animation-delay: .12s; }
+.reference-intro.is-leaving .logo-intro-mark { animation: intro-exit .55s ease-in forwards; }
+@keyframes intro-load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes intro-fill { from { fill: transparent; } to { fill: var(--orange-500); } }
+@keyframes intro-chevron { to { clip-path: polygon(100% 0, 135% 0, 135% 100%, 100% 100%, calc(100% + 35vmin) 50%); } }
+@keyframes intro-exit { to { transform: translateX(60px); opacity: 0; } }
+
+.hero-blueprint { display: none; }
+.home-hero-media { transform: none; will-change: auto; }
+.editorial-home .home-hero::after { background: none; }
+.home-hero-media::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg,rgba(4,18,32,.98),rgba(4,18,32,.82) 50%,rgba(4,18,32,.25)),linear-gradient(0deg,rgba(4,18,32,.72),transparent 45%); }
+.home-hero-scroll { position: relative; }
+.hero-blueprint-art { position: absolute; inset: -5%; }
+.hero-blueprint-art img { object-fit: cover; object-position: center; }
+.hero-drawing-caption { position: absolute; inset: auto 0 4rem; display: flex; justify-content: space-between; gap: 2rem; color: white; font: .8rem var(--font-mono); }
+.reference-motion [data-split-line] { padding-block: .1em; }
+.product-story-card { background: var(--graphite-950); }
+.product-story-media img, .technology-media img { transition: scale 1s var(--ease-out); }
+.product-story-card:hover .product-story-media img, .technology-grid article:hover img { scale: 1.04; }
+.process-track { position: relative; }
+.process-progress, .process-counter { display: none; }
+.technology-drawing { display: none; }
+.industry-marquee { display: block; width: 100%; overflow: hidden; }
+.industry-marquee-track, .industry-marquee-group { display: flex; }
+.industry-marquee-track { width: max-content; }
+.industry-marquee-group { flex-shrink: 0; }
+.industry-marquee-group[aria-hidden] { display: none; }
+.industry-marquee a { white-space: nowrap; }
+.industry-marquee:focus-within { overflow-x: auto; }
+
+@media (min-width: 1024px) {
+  .reference-desktop-motion .home-hero-scroll { height: 200svh; }
+  .reference-desktop-motion .home-hero { position: sticky; top: 0; height: 100svh; min-height: 48rem; }
+  .reference-desktop-motion .hero-blueprint { display: block; position: absolute; z-index: -3; inset: 0; background-color: var(--navy-950); background-image: linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px); background-size: 80px 80px; }
+  .reference-desktop-motion .home-hero::after { pointer-events: none; }
+  .reference-desktop-motion .hero-drawing-caption { z-index: 1; }
+  .reference-desktop-motion .product-story-list { position: relative; }
+  .reference-desktop-motion .product-story-card { position: sticky; top: 7rem; min-height: calc(100svh - 8rem); transform-origin: center top; box-shadow: 0 -1rem 2.5rem #0003; }
+  .reference-desktop-motion .product-story-card:nth-of-type(2) { top: 7.2rem; }
+  .reference-desktop-motion .product-story-card:nth-of-type(3) { top: 7.4rem; }
+  .reference-desktop-motion .product-story-card:nth-of-type(4) { top: 7.6rem; }
+  .reference-desktop-motion .product-story-card:nth-of-type(5) { top: 7.8rem; }
+  .reference-desktop-motion .process-counter { display: flex; align-items: end; gap: 1rem; margin-top: 3rem; color: var(--orange-500); font-family: var(--font-heading); }
+  .process-counter-window { display: block; overflow: hidden; height: 1em; font-size: clamp(7rem,12vw,12rem); line-height: 1; }
+  .process-counter-track, .process-counter-track > span { display: block; }
+  .process-counter-track > span { height: 1em; }
+  .process-counter-total { font: 1.5rem var(--font-mono); color: var(--steel-400); }
+  .reference-desktop-motion .process-steps { border-left: 1px solid var(--line-light); }
+  .reference-desktop-motion .process-steps li { padding: 14svh 0 14svh 2rem; transition: color .4s; }
+  .reference-desktop-motion .process-steps li:first-child { padding-top: 6svh; }
+  .reference-desktop-motion .process-steps li[data-active] h3 { color: var(--orange-500); }
+  .reference-desktop-motion .process-progress { display: block; position: absolute; z-index: 1; inset: 0 auto 0 0; width: 2px; background: var(--orange-500); transform-origin: top; }
+  .reference-desktop-motion .industry-marquee-group[aria-hidden] { display: flex; }
+  .reference-desktop-motion .technology-stage { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; min-height: 40rem; height: calc(100svh - 8rem); background: var(--bone); }
+  .reference-desktop-motion .technology-drawing { display: flex; flex-direction: column; justify-content: center; min-width: 0; color: var(--navy-900); }
+  .technology-drawing svg { width: 100%; max-height: 60svh; overflow: visible; }
+  .technology-drawing-label, .technology-drawing-key { font: .65rem var(--font-mono); letter-spacing: .08em; }
+  .technology-drawing-key { display: flex; flex-wrap: wrap; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line-dark); }
+  .reference-desktop-motion .technology-grid { display: grid; grid-template-columns: 1fr; align-items: center; background: transparent; }
+  .reference-desktop-motion .technology-grid article { grid-area: 1 / 1; min-width: 0; opacity: 0; visibility: hidden; transform: translateY(28px); transition: opacity .65s, transform .65s var(--ease-out), visibility .65s; }
+  .reference-desktop-motion .technology-grid article[data-active] { opacity: 1; visibility: visible; transform: none; }
+  .reference-desktop-motion .technology-media { height: clamp(10rem,24svh,20rem); }
+}
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .industry-marquee-track { width: 100%; }
+  .industry-marquee-group { display: grid; width: 100%; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .industry-marquee a { min-width: 0; white-space: normal; }
+  .process-intro { position: static; }
+}
+@media (max-width: 600px) { .industry-marquee-group { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .reference-intro { display: none; }
+  .product-story-media img, .technology-media img { transition: none; }
+  .product-story-card:hover .product-story-media img, .technology-grid article:hover img { scale: 1; }
+}
