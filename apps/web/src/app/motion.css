@@ -39,8 +39,11 @@
 .hero-drawing-caption { position: absolute; inset: auto 0 4rem; display: flex; justify-content: space-between; gap: 2rem; color: white; font: .8rem var(--font-mono); }
 .reference-motion [data-split-line] { padding-block: .1em; }
 .product-story-card { background: var(--graphite-950); }
+.product-story-media, .product-story-media img, .product-story-copy { will-change: transform, opacity; }
 .product-story-media img, .technology-media img { transition: scale 1s var(--ease-out); }
 .product-story-card:hover .product-story-media img, .technology-grid article:hover img { scale: 1.04; }
+.product-story-copy > a span { display: inline-block; transition: transform .25s ease; }
+.product-story-copy > a:hover span { transform: translate(3px,-3px); }
 .process-track { position: relative; }
 .process-progress, .process-counter { display: none; }
 .technology-drawing { display: none; }
@@ -58,12 +61,7 @@
   .reference-desktop-motion .hero-blueprint { display: block; position: absolute; z-index: -3; inset: 0; background-color: var(--navy-950); background-image: linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px); background-size: 80px 80px; }
   .reference-desktop-motion .home-hero::after { pointer-events: none; }
   .reference-desktop-motion .hero-drawing-caption { z-index: 1; }
-  .reference-desktop-motion .product-story-list { position: relative; }
-  .reference-desktop-motion .product-story-card { position: sticky; top: 7rem; min-height: calc(100svh - 8rem); transform-origin: center top; box-shadow: 0 -1rem 2.5rem #0003; }
-  .reference-desktop-motion .product-story-card:nth-of-type(2) { top: 7.2rem; }
-  .reference-desktop-motion .product-story-card:nth-of-type(3) { top: 7.4rem; }
-  .reference-desktop-motion .product-story-card:nth-of-type(4) { top: 7.6rem; }
-  .reference-desktop-motion .product-story-card:nth-of-type(5) { top: 7.8rem; }
+
   .reference-desktop-motion .process-counter { display: flex; align-items: end; gap: 1rem; margin-top: 3rem; color: var(--orange-500); font-family: var(--font-heading); }
   .process-counter-window { display: block; overflow: hidden; height: 1em; font-size: clamp(7rem,12vw,12rem); line-height: 1; }
   .process-counter-track, .process-counter-track > span { display: block; }
@@ -94,6 +92,7 @@
 @media (max-width: 600px) { .industry-marquee-group { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) {
   .reference-intro { display: none; }
+  .product-story-media, .product-story-media img, .product-story-copy { will-change: auto; }
   .product-story-media img, .technology-media img { transition: none; }
   .product-story-card:hover .product-story-media img, .technology-grid article:hover img { scale: 1; }
 }

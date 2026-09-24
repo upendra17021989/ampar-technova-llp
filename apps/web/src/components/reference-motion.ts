@@ -8,7 +8,7 @@ export function mountReferenceMotion(root: HTMLElement) {
   media.add("(prefers-reduced-motion: no-preference)", () => {
     root.classList.add("reference-motion");
     const select = gsap.utils.selector(root);
-    select(".home-hero-content > p, .home-hero-content > .action-row, .hero-capabilities, .positioning-copy, .section-intro, .product-story-copy, .process-intro > p, .process-steps > li, .quality-copy > p, .quality-evidence, .reach-grid > div, .final-cta .button, .interior-page .section > .shell").forEach((target: HTMLElement) => {
+    select(".home-hero-content > p, .home-hero-content > .action-row, .hero-capabilities, .positioning-copy, .section-intro, .process-intro > p, .process-steps > li, .quality-copy > p, .quality-evidence, .reach-grid > div, .final-cta .button, .interior-page .section > .shell").forEach((target: HTMLElement) => {
       gsap.from(target, { y: 28, opacity: 0, duration: 0.9, ease: "expo.out",
         scrollTrigger: { trigger: target, start: "top 88%", once: true } });
     });
@@ -24,6 +24,30 @@ export function mountReferenceMotion(root: HTMLElement) {
       gsap.fromTo(image, { clipPath: "polygon(0% 0%, -35% 0%, 0% 50%, -35% 100%, 0% 100%)" },
         { clipPath: "polygon(0% 0%, 100% 0%, 135% 50%, 100% 100%, 0% 100%)", duration: 1.4, ease: "power3.inOut",
           scrollTrigger: { trigger: image, start: "top 88%", once: true } });
+    });
+    const productStory = root.querySelector<HTMLElement>(".product-story");
+    if (productStory) {
+      gsap.from(select(".product-story .eyebrow, .product-story .section-heading > .text-link"), {
+        y: 14, opacity: 0, duration: 0.55, stagger: 0.12, ease: "power3.out",
+        scrollTrigger: { trigger: productStory, start: "top 80%", once: true },
+      });
+    }
+    select(".product-story-card").forEach((card: HTMLElement) => {
+      const mediaElement = card.querySelector<HTMLElement>(".product-story-media");
+      const image = mediaElement?.querySelector<HTMLElement>("img");
+      const copyItems = card.querySelectorAll<HTMLElement>(".category-number, h3, p, .product-story-copy > a");
+      const timeline = gsap.timeline({
+        scrollTrigger: { trigger: card, start: "top 78%", once: true },
+      });
+      if (mediaElement) {
+        timeline.from(mediaElement, { y: 36, opacity: 0, clipPath: "inset(12% 0% 12% 0%)", duration: 1, ease: "power3.inOut" }, 0);
+      }
+      if (image) {
+        timeline.from(image, { scale: 1.1, duration: 1.25, ease: "power2.out" }, 0);
+        gsap.fromTo(image, { yPercent: -4 }, { yPercent: 4, ease: "none",
+          scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: 0.8 } });
+      }
+      timeline.from(copyItems, { y: 24, opacity: 0, duration: 0.55, stagger: 0.09, ease: "power3.out" }, "-=0.65");
     });
     return () => { splits.forEach((split) => split.revert()); root.classList.remove("reference-motion"); };
   });
@@ -41,11 +65,7 @@ export function mountReferenceMotion(root: HTMLElement) {
         .to(select(".home-hero-media"), { clipPath: "inset(0% 0% 100% 0%)", duration: 1 }, 0)
         .fromTo(select(".hero-drawing-caption"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.25 }, 0.6);
     }
-    const cards = gsap.utils.toArray<HTMLElement>(".product-story-card", root);
-    cards.slice(0, -1).forEach((card, index) => {
-      gsap.to(card, { scale: 0.94, filter: "brightness(0.55)", ease: "none",
-        scrollTrigger: { trigger: cards[index + 1], start: "top bottom", end: "top 120px", scrub: true } });
-    });
+
     const technologyStage = root.querySelector<HTMLElement>(".technology-stage");
     const technologies = gsap.utils.toArray<HTMLElement>(".technology-grid article", root);
     let activeTechnology = -1;
