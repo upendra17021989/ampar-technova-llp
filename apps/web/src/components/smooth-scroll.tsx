@@ -14,7 +14,13 @@ export function SmoothScroll() {
       gsap.registerPlugin(ScrollTrigger);
       const media = gsap.matchMedia();
       media.add("(prefers-reduced-motion: no-preference)", () => {
-        const lenis = new Lenis({ autoRaf: false, duration: 1.1, anchors: { offset: -110 }, allowNestedScroll: true });
+        const lenis = new Lenis({
+          autoRaf: false,
+          lerp: 0.12,
+          smoothWheel: true,
+          syncTouch: false,
+          anchors: { offset: -110 },
+        });
         const tick = (time: number) => lenis.raf(time * 1000);
         const syncLock = () => {
           if (document.body.matches(".intro-active, .menu-open")) lenis.stop();
@@ -24,6 +30,7 @@ export function SmoothScroll() {
         observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
         syncLock();
         lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.lagSmoothing(0);
         gsap.ticker.add(tick);
         return () => { observer.disconnect(); gsap.ticker.remove(tick); lenis.destroy(); };
       });
