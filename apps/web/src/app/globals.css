@@ -100,3 +100,4 @@ body.menu-open{overflow:hidden}.site-header{position:fixed;inset:0 0 auto;z-inde
   background: var(--teal-700);
   color: var(--white);
 }
+.typewriter-heading{display:grid}.typewriter-measure,.typewriter-visible{grid-area:1/1}.typewriter-measure{visibility:hidden}.typewriter-visible{align-self:start}.typewriter-caret{display:none;width:.06em;height:.85em;margin-left:.04em;background:currentColor;vertical-align:-.08em}.typewriter-heading.is-typing .typewriter-caret{display:inline-block;animation:typewriter-blink .7s steps(1) infinite}@keyframes typewriter-blink{50%{opacity:0}}@media(prefers-reduced-motion:reduce){.typewriter-heading.is-typing .typewriter-caret{display:none}}

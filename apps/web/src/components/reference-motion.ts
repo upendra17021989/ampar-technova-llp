@@ -12,7 +12,7 @@ export function mountReferenceMotion(root: HTMLElement) {
       gsap.from(target, { y: 28, opacity: 0, duration: 0.9, ease: "expo.out",
         scrollTrigger: { trigger: target, start: "top 88%", once: true } });
     });
-    const splits = select("h1, .home-section-heading h2, .positioning-grid h2, .quality-copy h2, .industries-title h2, .final-cta h2").map((heading: HTMLElement) =>
+    const splits = select("h1, .home-section-heading h2, .positioning-grid h2, .industries-title h2, .final-cta h2").map((heading: HTMLElement) =>
       SplitText.create(heading, { type: "lines", mask: "lines", autoSplit: true,
         onSplit: (split) => {
           gsap.set(split.masks, { padding: "0.15em 0.12em", margin: "-0.15em -0.12em" });
