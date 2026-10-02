@@ -35,7 +35,8 @@
 .home-hero-media::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg,rgba(4,18,32,.98),rgba(4,18,32,.82) 50%,rgba(4,18,32,.25)),linear-gradient(0deg,rgba(4,18,32,.72),transparent 45%); }
 .home-hero-scroll { position: relative; }
 .hero-blueprint-art { position: absolute; inset: -5%; }
-.hero-blueprint-art img { object-fit: cover; object-position: center; }
+.hero-blueprint-filter { position: absolute; pointer-events: none; }
+.hero-blueprint-art img { object-fit: cover; object-position: center; filter: url(#hero-blueprint-orange); }
 .hero-drawing-caption { position: absolute; inset: auto 0 4rem; display: flex; justify-content: space-between; gap: 2rem; color: white; font: .8rem var(--font-mono); }
 .reference-motion [data-split-line] { padding-block: .1em; }
 .product-story-card { background: var(--graphite-950); }
@@ -75,7 +76,7 @@
   .reference-desktop-motion .industry-marquee-group[aria-hidden] { display: flex; }
   .reference-desktop-motion .technology-stage { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; min-height: 40rem; height: calc(100svh - 8rem); background: var(--bone); }
   .reference-desktop-motion .technology-drawing { display: flex; flex-direction: column; justify-content: center; min-width: 0; color: var(--navy-900); }
-  .technology-drawing svg { width: 100%; max-height: 60svh; overflow: visible; }
+  .technology-drawing svg { width: 100%; max-height: 60svh; overflow: visible; color: var(--orange-600); }
   .technology-drawing-label, .technology-drawing-key { font: .65rem var(--font-mono); letter-spacing: .08em; }
   .technology-drawing-key { display: flex; flex-wrap: wrap; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line-dark); }
   .reference-desktop-motion .technology-grid { display: grid; grid-template-columns: 1fr; align-items: center; background: transparent; }

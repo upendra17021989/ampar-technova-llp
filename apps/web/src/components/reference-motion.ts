@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { mountProductsMotion } from "./products-motion";
 
 export function mountReferenceMotion(root: HTMLElement) {
   gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -9,6 +10,7 @@ export function mountReferenceMotion(root: HTMLElement) {
     root.classList.add("reference-motion");
     const select = gsap.utils.selector(root);
     select(".home-hero-content > p, .home-hero-content > .action-row, .hero-capabilities, .positioning-copy, .section-intro, .process-intro > p, .process-steps > li, .quality-copy > p, .quality-evidence, .reach-grid > div, .final-cta .button, .interior-page .section > .shell").forEach((target: HTMLElement) => {
+      if (root.matches(".products-index") && target.matches(".section > .shell")) return;
       gsap.from(target, { y: 28, opacity: 0, duration: 0.9, ease: "expo.out",
         scrollTrigger: { trigger: target, start: "top 88%", once: true } });
     });
@@ -49,7 +51,8 @@ export function mountReferenceMotion(root: HTMLElement) {
       }
       timeline.from(copyItems, { y: 24, opacity: 0, duration: 0.55, stagger: 0.09, ease: "power3.out" }, "-=0.65");
     });
-    return () => { splits.forEach((split) => split.revert()); root.classList.remove("reference-motion"); };
+    const cleanupProducts = mountProductsMotion(root);
+    return () => { cleanupProducts(); splits.forEach((split) => split.revert()); root.classList.remove("reference-motion"); };
   });
   media.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
     root.classList.add("reference-desktop-motion");

@@ -13,7 +13,7 @@ export function TechnologyDrawing() {
         <ellipse cx="245" cy="325" rx="74" ry="116" transform="rotate(-20 245 325)" />
         <path d="m195 230 148-85c49-28 108 20 108 76v133l-143 83" />
       </g>
-      <g className="technology-bond" stroke="var(--teal-700)" strokeWidth="2" strokeDasharray="4 5">
+      <g className="technology-bond" stroke="var(--orange-600)" strokeWidth="2" strokeDasharray="4 5">
         <ellipse cx="245" cy="325" rx="80" ry="125" transform="rotate(-20 245 325)" />
         <path d="m180 218 162-92c62-35 126 20 126 94v140l-153 87" />
       </g>
